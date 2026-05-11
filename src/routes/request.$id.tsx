@@ -129,15 +129,46 @@ function RequestDetail() {
                   <Label htmlFor="amount">Custom amount (USD)</Label>
                   <Input id="amount" type="number" min={1} value={amount} onChange={(e) => setAmount(e.target.value)} />
                 </div>
-                <div className="flex items-center justify-between rounded-xl border border-border bg-secondary/40 p-3">
-                  <div>
-                    <div className="text-sm font-medium">Donate anonymously</div>
-                    <div className="text-xs text-muted-foreground">Your name won't be shown</div>
+                <div className="rounded-xl border border-border bg-secondary/40 p-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-2">
+                      {anonymous ? <EyeOff className="h-4 w-4 text-muted-foreground" /> : <Eye className="h-4 w-4 text-primary" />}
+                      <div>
+                        <div className="text-sm font-medium">Donate anonymously</div>
+                        <div className="text-xs text-muted-foreground">
+                          {anonymous
+                            ? `${r.studentName.split(" ")[0]} will see "Anonymous Donor" instead of your name.`
+                            : "Your name and country will be shown to the student."}
+                        </div>
+                      </div>
+                    </div>
+                    <Switch checked={anonymous} onCheckedChange={setAnonymous} />
                   </div>
-                  <Switch checked={anonymous} onCheckedChange={setAnonymous} />
+                  <div className="mt-3 flex items-center gap-2 rounded-lg border border-border/70 bg-background px-3 py-2 text-xs">
+                    {anonymous ? (
+                      <>
+                        <Lock className="h-3.5 w-3.5 text-muted-foreground" />
+                        <span className="text-muted-foreground">Will appear as <span className="font-medium text-foreground">Anonymous Donor</span></span>
+                      </>
+                    ) : donor ? (
+                      <>
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[image:var(--gradient-hero)] text-[10px] font-semibold text-primary-foreground">
+                          {donor.name.charAt(0).toUpperCase()}
+                        </span>
+                        <span>Will appear as <span className="font-medium text-foreground">{donor.name}</span>{donor.country ? ` · ${donor.country}` : ""}</span>
+                      </>
+                    ) : (
+                      <>
+                        <UserCircle2 className="h-3.5 w-3.5 text-muted-foreground" />
+                        <span className="text-muted-foreground"><Link to="/login" className="font-medium text-primary hover:underline">Sign in</Link> to attach your identity</span>
+                      </>
+                    )}
+                  </div>
                 </div>
-                <Button type="submit" variant="hero" size="lg" className="w-full">Support {r.studentName.split(" ")[0]}</Button>
-                <p className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground"><ShieldCheck className="h-3.5 w-3.5" /> 100% reaches the student · No fees</p>
+                <Button type="submit" variant="hero" size="lg" className="w-full">
+                  {donor ? `Support ${r.studentName.split(" ")[0]}` : "Sign in to donate"}
+                </Button>
+                <p className="flex items-center justify-center gap-1.5 text-xs text-muted-foreground"><ShieldCheck className="h-3.5 w-3.5" /> 100% reaches the student · No fees · Tax-ready receipt</p>
               </form>
             </div>
           </aside>
