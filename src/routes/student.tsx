@@ -23,7 +23,7 @@ export const Route = createFileRoute("/student")({
 });
 
 const statusColor: Record<string, string> = {
-  pending: "bg-warning/15 text-warning-foreground border-warning/30",
+  pending: "bg-warning/15 text-foreground border-warning/30",
   verified: "bg-primary/10 text-primary border-primary/20",
   funded: "bg-success/15 text-success border-success/30",
   rejected: "bg-destructive/10 text-destructive border-destructive/30",
