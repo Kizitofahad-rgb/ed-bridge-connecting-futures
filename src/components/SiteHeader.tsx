@@ -61,6 +61,9 @@ export function SiteHeader() {
                 <DropdownMenuItem onClick={() => navigate({ to: "/donor" })}>
                   <User className="h-4 w-4" /> My dashboard
                 </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate({ to: "/transparency" })}>
+                  <ShieldCheck className="h-4 w-4" /> Transparency & impact
+                </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => { logout(); navigate({ to: "/" }); }}>
                   <LogOut className="h-4 w-4" /> Sign out
                 </DropdownMenuItem>
