@@ -25,6 +25,9 @@ export interface FundingRequest {
   trustScore: number;
   status: RequestStatus;
   school: string;
+  supporters: number;
+  gpa?: string;
+  fieldOfStudy: string;
 }
 
 export const requests: FundingRequest[] = [
