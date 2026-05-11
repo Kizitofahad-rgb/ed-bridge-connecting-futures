@@ -23,6 +23,10 @@ export const Route = createFileRoute("/donor")({
 });
 
 function DonorDashboard() {
+  const { donor, updateProfile } = useDonorAuth();
+  const [editing, setEditing] = useState(false);
+  const [draft, setDraft] = useState({ country: donor?.country ?? "", bio: donor?.bio ?? "" });
+
   const stats = [
     { icon: Heart, label: "Students supported", value: 7 },
     { icon: DollarSign, label: "Total contributed", value: 1840, prefix: "$" },
@@ -35,6 +39,37 @@ function DonorDashboard() {
     { icon: Receipt, t: "Receipts on every donation", d: "Tax-ready" },
     { icon: Sparkles, t: "Milestone-based release", d: "Funds tied to outcomes" },
   ];
+
+  if (!donor) {
+    return (
+      <div className="min-h-screen bg-background">
+        <SiteHeader />
+        <main className="mx-auto flex max-w-md flex-col items-center justify-center px-6 py-24 text-center">
+          <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+            <Heart className="h-6 w-6" />
+          </span>
+          <h1 className="mt-5 text-2xl font-semibold tracking-tight">Sign in to see your impact</h1>
+          <p className="mt-2 text-sm text-muted-foreground">
+            Create a free donor account to track contributions, get milestone updates, and download receipts.
+          </p>
+          <Button asChild variant="hero" size="lg" className="mt-6 w-full">
+            <Link to="/login">Sign in or create account</Link>
+          </Button>
+          <Button asChild variant="ghost" size="sm" className="mt-2">
+            <Link to="/browse">Browse students first</Link>
+          </Button>
+        </main>
+        <SiteFooter />
+      </div>
+    );
+  }
+
+  const saveProfile = () => {
+    updateProfile(draft);
+    setEditing(false);
+    toast.success("Profile updated");
+  };
+  const firstName = donor.name.split(" ")[0];
 
   return (
     <div className="min-h-screen bg-background">
