@@ -83,7 +83,7 @@ function DonorDashboard() {
             <span className="inline-flex w-fit items-center gap-2 rounded-full bg-white/15 px-3 py-1 text-xs font-medium backdrop-blur">
               <Sparkles className="h-3.5 w-3.5" /> You're in the top 5% of donors this month
             </span>
-            <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Welcome back, Sarah 👋</h1>
+            <h1 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Welcome back, {firstName} 👋</h1>
             <p className="mt-2 max-w-xl text-primary-foreground/90">
               Your generosity has touched 23 lives across 4 countries. Here's what's happening with the students you support.
             </p>
