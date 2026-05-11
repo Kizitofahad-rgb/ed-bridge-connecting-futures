@@ -1,5 +1,13 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "routes": [{ "src": "/[^.]+", "dest": "/", "status": 200 }]
+  "outputDirectory": ".vercel/output",
+  "functions": {
+    "api/server.js": {
+      "runtime": "nodejs20.x"
+    }
+  },
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/(.*)", "dest": "/api/server" }
+  ]
 }
