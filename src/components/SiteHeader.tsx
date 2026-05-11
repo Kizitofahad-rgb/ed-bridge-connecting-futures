@@ -1,8 +1,20 @@
-import { Link } from "@tanstack/react-router";
-import { GraduationCap } from "lucide-react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { GraduationCap, LogOut, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useDonorAuth } from "@/lib/auth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function SiteHeader() {
+  const { donor, logout } = useDonorAuth();
+  const navigate = useNavigate();
+
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/80 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
@@ -27,12 +39,40 @@ export function SiteHeader() {
           </Link>
         </nav>
         <div className="flex items-center gap-2">
-          <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
-            <Link to="/student">Get Support</Link>
-          </Button>
-          <Button asChild size="sm" variant="hero">
-            <Link to="/browse">Become a Donor</Link>
-          </Button>
+          {donor ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="flex items-center gap-2 rounded-full border border-border bg-card px-2 py-1 pr-3 transition-colors hover:bg-secondary">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[image:var(--gradient-hero)] text-xs font-semibold text-primary-foreground">
+                    {donor.name.charAt(0).toUpperCase()}
+                  </span>
+                  <span className="hidden text-sm font-medium sm:inline">{donor.name.split(" ")[0]}</span>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel>
+                  <div className="font-medium">{donor.name}</div>
+                  <div className="truncate text-xs font-normal text-muted-foreground">{donor.email}</div>
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={() => navigate({ to: "/donor" })}>
+                  <User className="h-4 w-4" /> My dashboard
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => { logout(); navigate({ to: "/" }); }}>
+                  <LogOut className="h-4 w-4" /> Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <>
+              <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
+                <Link to="/onboarding">I'm a student</Link>
+              </Button>
+              <Button asChild size="sm" variant="hero">
+                <Link to="/login">Sign in</Link>
+              </Button>
+            </>
+          )}
         </div>
       </div>
     </header>

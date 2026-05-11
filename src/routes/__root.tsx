@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
+import { DonorAuthProvider } from "@/lib/auth";
 
 import appCss from "../styles.css?url";
 
@@ -114,8 +115,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
-      <Toaster richColors position="top-right" />
+      <DonorAuthProvider>
+        <Outlet />
+        <Toaster richColors position="top-right" />
+      </DonorAuthProvider>
     </QueryClientProvider>
   );
 }
