@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as StudentRouteImport } from './routes/student'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as DonorRouteImport } from './routes/donor'
 import { Route as BrowseRouteImport } from './routes/browse'
 import { Route as AdminRouteImport } from './routes/admin'
@@ -19,6 +21,16 @@ import { Route as RequestIdRouteImport } from './routes/request.$id'
 const StudentRoute = StudentRouteImport.update({
   id: '/student',
   path: '/student',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DonorRoute = DonorRouteImport.update({
@@ -52,6 +64,8 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/browse': typeof BrowseRoute
   '/donor': typeof DonorRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
   '/student': typeof StudentRoute
   '/request/$id': typeof RequestIdRoute
 }
@@ -60,6 +74,8 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/browse': typeof BrowseRoute
   '/donor': typeof DonorRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
   '/student': typeof StudentRoute
   '/request/$id': typeof RequestIdRoute
 }
@@ -69,20 +85,40 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/browse': typeof BrowseRoute
   '/donor': typeof DonorRoute
+  '/login': typeof LoginRoute
+  '/onboarding': typeof OnboardingRoute
   '/student': typeof StudentRoute
   '/request/$id': typeof RequestIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/browse' | '/donor' | '/student' | '/request/$id'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/browse'
+    | '/donor'
+    | '/login'
+    | '/onboarding'
+    | '/student'
+    | '/request/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/browse' | '/donor' | '/student' | '/request/$id'
+  to:
+    | '/'
+    | '/admin'
+    | '/browse'
+    | '/donor'
+    | '/login'
+    | '/onboarding'
+    | '/student'
+    | '/request/$id'
   id:
     | '__root__'
     | '/'
     | '/admin'
     | '/browse'
     | '/donor'
+    | '/login'
+    | '/onboarding'
     | '/student'
     | '/request/$id'
   fileRoutesById: FileRoutesById
@@ -92,6 +128,8 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   BrowseRoute: typeof BrowseRoute
   DonorRoute: typeof DonorRoute
+  LoginRoute: typeof LoginRoute
+  OnboardingRoute: typeof OnboardingRoute
   StudentRoute: typeof StudentRoute
   RequestIdRoute: typeof RequestIdRoute
 }
@@ -103,6 +141,20 @@ declare module '@tanstack/react-router' {
       path: '/student'
       fullPath: '/student'
       preLoaderRoute: typeof StudentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/donor': {
@@ -148,6 +200,8 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   BrowseRoute: BrowseRoute,
   DonorRoute: DonorRoute,
+  LoginRoute: LoginRoute,
+  OnboardingRoute: OnboardingRoute,
   StudentRoute: StudentRoute,
   RequestIdRoute: RequestIdRoute,
 }
