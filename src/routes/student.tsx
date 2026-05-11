@@ -59,7 +59,19 @@ function StudentDashboard() {
           </div>
         </section>
 
-        <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
+        {/* New student CTA */}
+        <section className="mb-10 flex flex-col items-start justify-between gap-4 rounded-3xl border border-primary/20 bg-primary/5 p-6 sm:flex-row sm:items-center">
+          <div className="flex items-start gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary"><Sparkles className="h-5 w-5" /></span>
+            <div>
+              <h2 className="text-base font-semibold">New to Ed-Bridge?</h2>
+              <p className="text-sm text-muted-foreground">Build your verified profile in 4 quick steps to start receiving direct funding.</p>
+            </div>
+          </div>
+          <Button asChild variant="hero" size="sm">
+            <Link to="/onboarding">Start onboarding <ArrowRight className="h-4 w-4" /></Link>
+          </Button>
+        </section>
           {/* Form */}
           <section className="rounded-3xl border border-border/70 bg-card p-7 shadow-[var(--shadow-card)]">
             <h2 className="text-xl font-semibold">Create a funding request</h2>
