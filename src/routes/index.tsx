@@ -93,6 +93,31 @@ function Landing() {
         </div>
       </section>
 
+      {/* Impact stats */}
+      <ImpactStats />
+
+      {/* Transparency badges */}
+      <section className="mx-auto max-w-7xl px-6 pt-16">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            { icon: ShieldCheck, t: "ID-verified students", d: "Government ID + enrollment letter" },
+            { icon: Receipt, t: "100% direct delivery", d: "Funds wired to the institution" },
+            { icon: Eye, t: "Public donation ledger", d: "Every contribution traceable" },
+            { icon: Lock, t: "Zero platform fees", d: "Operations covered by foundations" },
+          ].map((b) => (
+            <div key={b.t} className="flex items-start gap-3 rounded-2xl border border-border/70 bg-card p-4 transition-colors hover:border-primary/30">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <b.icon className="h-5 w-5" />
+              </span>
+              <div>
+                <div className="text-sm font-semibold text-foreground">{b.t}</div>
+                <div className="text-xs text-muted-foreground">{b.d}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* How it works */}
       <section className="mx-auto max-w-7xl px-6 py-20">
         <div className="mx-auto max-w-2xl text-center">
