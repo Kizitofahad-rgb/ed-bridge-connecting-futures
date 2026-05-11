@@ -1,10 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Heart, TrendingUp, Users, DollarSign, Sparkles, ShieldCheck, Receipt, ArrowRight } from "lucide-react";
+import { useState } from "react";
+import { Heart, TrendingUp, Users, DollarSign, Sparkles, ShieldCheck, Receipt, ArrowRight, Pencil, Check } from "lucide-react";
 import { SiteHeader, SiteFooter } from "@/components/SiteHeader";
 import { StudentCard } from "@/components/StudentCard";
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { requests, recentActivity } from "@/lib/mock-data";
+import { useDonorAuth } from "@/lib/auth";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/donor")({
   head: () => ({
