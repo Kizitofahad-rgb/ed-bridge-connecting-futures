@@ -34,6 +34,9 @@ export function SiteHeader() {
           <Link to="/donor" className="px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "px-3 py-2 text-sm text-foreground font-medium" }}>
             Donor Dashboard
           </Link>
+          <Link to="/transparency" className="px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "px-3 py-2 text-sm text-foreground font-medium" }}>
+            Transparency
+          </Link>
           <Link to="/admin" className="px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "px-3 py-2 text-sm text-foreground font-medium" }}>
             Admin
           </Link>
