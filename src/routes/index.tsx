@@ -185,12 +185,29 @@ function Landing() {
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {successStories.map((s) => (
-            <figure key={s.name} className="rounded-2xl border border-border/70 bg-card p-7 shadow-[var(--shadow-card)]">
-              <blockquote className="text-foreground leading-relaxed">"{s.quote}"</blockquote>
-              <figcaption className="mt-5 border-t border-border/60 pt-4">
-                <div className="font-semibold">{s.name}</div>
-                <div className="text-xs text-muted-foreground">{s.role}</div>
-              </figcaption>
+            <figure key={s.name} className="group flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[var(--shadow-elegant)]">
+              <div className="relative h-44 overflow-hidden">
+                <img src={s.photo} alt={s.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0" />
+                <span className="absolute left-3 top-3 rounded-full bg-success/90 px-2.5 py-1 text-[11px] font-medium text-success-foreground shadow-sm">
+                  Funded · ${s.amountFunded.toLocaleString()}
+                </span>
+                <div className="absolute inset-x-3 bottom-3 text-xs font-medium text-white/90">{s.country}</div>
+              </div>
+              <div className="flex flex-1 flex-col p-6">
+                <Quote className="h-5 w-5 text-primary/40" />
+                <blockquote className="mt-2 leading-relaxed text-foreground/90">{s.quote}</blockquote>
+                <figcaption className="mt-5 flex items-center justify-between border-t border-border/60 pt-4">
+                  <div>
+                    <div className="font-semibold">{s.name}</div>
+                    <div className="text-xs text-muted-foreground">{s.role}</div>
+                  </div>
+                  <div className="text-right text-xs text-muted-foreground">
+                    <div className="font-semibold text-foreground">{s.supporters}</div>
+                    <div>supporters</div>
+                  </div>
+                </figcaption>
+              </div>
             </figure>
           ))}
         </div>
