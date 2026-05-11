@@ -33,13 +33,21 @@ export const Route = createFileRoute("/request/$id")({
 
 function RequestDetail() {
   const r = Route.useLoaderData();
+  const { donor } = useDonorAuth();
+  const navigate = useNavigate();
   const [amount, setAmount] = useState("50");
   const [anonymous, setAnonymous] = useState(false);
   const pct = Math.min(100, Math.round((r.amountRaised / r.amountNeeded) * 100));
 
   const onDonate = (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success(`Thank you! Your $${amount} ${anonymous ? "anonymous " : ""}donation is on its way to ${r.studentName}.`);
+    if (!donor) {
+      toast.message("Please sign in to donate", { description: "Create a free donor account in under a minute." });
+      navigate({ to: "/login" });
+      return;
+    }
+    const displayName = anonymous ? "Anonymous Donor" : donor.name;
+    toast.success(`Thank you, ${displayName}! $${amount} is on its way to ${r.studentName}.`);
   };
 
   return (
