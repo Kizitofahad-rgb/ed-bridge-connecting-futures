@@ -120,6 +120,19 @@ function DonorDashboard() {
           ))}
         </section>
 
+        <section className="mt-6 flex flex-col items-start justify-between gap-3 rounded-3xl border border-primary/20 bg-primary/5 p-5 sm:flex-row sm:items-center">
+          <div className="flex items-start gap-3">
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary"><ShieldCheck className="h-5 w-5" /></span>
+            <div>
+              <h2 className="text-base font-semibold">See full transparency & impact dashboard</h2>
+              <p className="text-sm text-muted-foreground">Heatmaps, charts, donation history, and proof of impact uploads.</p>
+            </div>
+          </div>
+          <Button asChild variant="hero" size="sm">
+            <Link to="/transparency">Open dashboard <ArrowRight className="h-4 w-4" /></Link>
+          </Button>
+        </section>
+
         {/* Donor profile */}
         <section className="mt-8 rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-card)] sm:p-7">
           <div className="flex flex-wrap items-start justify-between gap-4">

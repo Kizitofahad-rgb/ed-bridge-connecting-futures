@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { GraduationCap, LogOut, User } from "lucide-react";
+import { GraduationCap, LogOut, ShieldCheck, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDonorAuth } from "@/lib/auth";
 import {
@@ -34,6 +34,9 @@ export function SiteHeader() {
           <Link to="/donor" className="px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "px-3 py-2 text-sm text-foreground font-medium" }}>
             Donor Dashboard
           </Link>
+          <Link to="/transparency" className="px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "px-3 py-2 text-sm text-foreground font-medium" }}>
+            Transparency
+          </Link>
           <Link to="/admin" className="px-3 py-2 text-sm text-muted-foreground transition-colors hover:text-foreground" activeProps={{ className: "px-3 py-2 text-sm text-foreground font-medium" }}>
             Admin
           </Link>
@@ -57,6 +60,9 @@ export function SiteHeader() {
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onClick={() => navigate({ to: "/donor" })}>
                   <User className="h-4 w-4" /> My dashboard
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => navigate({ to: "/transparency" })}>
+                  <ShieldCheck className="h-4 w-4" /> Transparency & impact
                 </DropdownMenuItem>
                 <DropdownMenuItem onClick={() => { logout(); navigate({ to: "/" }); }}>
                   <LogOut className="h-4 w-4" /> Sign out

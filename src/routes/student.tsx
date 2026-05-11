@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { ProofOfImpact } from "@/components/ProofOfImpact";
+import { TrustScoreRing } from "@/components/TrustScoreRing";
 import { myRequests } from "@/lib/mock-data";
 import studentImg from "@/assets/student-1.jpg";
 import { toast } from "sonner";
@@ -52,10 +54,13 @@ function StudentDashboard() {
             </div>
             <p className="mt-1 text-sm text-muted-foreground">Computer Science · University of Lagos · Nigeria</p>
             <div className="mt-3 flex flex-wrap gap-3 text-xs">
-              <span className="rounded-full bg-secondary px-3 py-1 text-secondary-foreground">Trust score · 94</span>
               <span className="rounded-full bg-secondary px-3 py-1 text-secondary-foreground">2 active requests</span>
               <span className="rounded-full bg-secondary px-3 py-1 text-secondary-foreground">$1,240 raised</span>
+              <span className="rounded-full bg-secondary px-3 py-1 text-secondary-foreground">87 supporters</span>
             </div>
+          </div>
+          <div className="hidden sm:block">
+            <TrustScoreRing score={94} label="Student trust" tier="Verified" size={108} />
           </div>
         </section>
 
@@ -138,6 +143,8 @@ function StudentDashboard() {
             </div>
           </section>
         </div>
+
+        <ProofOfImpact studentId="r1" uploadable className="mt-12" />
       </main>
       <SiteFooter />
     </div>
