@@ -1,6 +1,6 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { ArrowLeft, BadgeCheck, MapPin, Clock, ShieldCheck } from "lucide-react";
+import { ArrowLeft, BadgeCheck, MapPin, Clock, ShieldCheck, EyeOff, Eye, UserCircle2, Lock } from "lucide-react";
 import { SiteHeader, SiteFooter } from "@/components/SiteHeader";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -8,6 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Progress } from "@/components/ui/progress";
 import { Switch } from "@/components/ui/switch";
 import { requests } from "@/lib/mock-data";
+import { useDonorAuth } from "@/lib/auth";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/request/$id")({
