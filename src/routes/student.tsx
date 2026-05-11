@@ -8,6 +8,8 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
+import { ProofOfImpact } from "@/components/ProofOfImpact";
+import { TrustScoreRing } from "@/components/TrustScoreRing";
 import { myRequests } from "@/lib/mock-data";
 import studentImg from "@/assets/student-1.jpg";
 import { toast } from "sonner";
