@@ -159,23 +159,82 @@ export const requests: FundingRequest[] = [
   },
 ];
 
-export const successStories = [
+export const myRequests = [
+  {
+    id: "m1",
+    title: "Final-year Computer Science tuition",
+    amountNeeded: 1800,
+    amountRaised: 1240,
+    deadline: "2026-07-15",
+    status: "verified" as RequestStatus,
+  },
+  {
+    id: "m2",
+    title: "Internship travel & housing",
+    amountNeeded: 600,
+    amountRaised: 0,
+    deadline: "2026-06-01",
+    status: "pending" as RequestStatus,
+  },
+];
+
+export interface SuccessStory {
+  name: string;
+  quote: string;
+  role: string;
+  photo: string;
+  country: string;
+  amountFunded: number;
+  supporters: number;
+}
+
+export const successStories: SuccessStory[] = [
   {
     name: "Priya Sharma",
+    photo: s3,
+    country: "India",
+    amountFunded: 2200,
+    supporters: 94,
     quote:
-      "Ed-Bridge donors helped me finish my degree. I'm now a software engineer supporting my younger siblings' education.",
+      "Ed-Bridge donors covered my final year of computer science. I now work as a software engineer in Bengaluru and pay for my younger sisters' school fees every month.",
     role: "Software Engineer · Funded 2024",
   },
   {
     name: "Joseph Banda",
+    photo: s6,
+    country: "Zambia",
+    amountFunded: 3100,
+    supporters: 142,
     quote:
-      "I never thought strangers across the world would believe in me. Today I'm in my final year of medical school.",
+      "Strangers from twelve countries believed in me. I'm in my final year of medical school and I'll dedicate my first decade to rural clinics in southern Africa.",
     role: "Medical Student · Funded 2023",
   },
   {
     name: "Aisha Bello",
+    photo: s1,
+    country: "Nigeria → Germany",
+    amountFunded: 4500,
+    supporters: 211,
     quote:
-      "From a small village in northern Nigeria to a master's program in Berlin — all because someone gave.",
+      "From a village in Kano to a master's lab in Berlin. Every milestone was visible to my donors — and so was my graduation day.",
     role: "Graduate Researcher · Funded 2024",
   },
 ];
+
+export const platformImpact = {
+  studentsFunded: 12_473,
+  totalDelivered: 3_812_540,
+  countries: 62,
+  graduationRate: 94,
+  avgVerificationHours: 24,
+  donorRating: 4.9,
+};
+
+export const recentActivity = [
+  { id: "a1", who: "You", action: "donated $50 to", target: "Amara Okafro's tuition", when: "2 hours ago", amount: 50 },
+  { id: "a2", who: "Sofía Ramírez", action: "completed milestone", target: "Clinical exam passed ✓", when: "yesterday", amount: 0 },
+  { id: "a3", who: "You", action: "donated $25 to", target: "Linh Tran's laptop", when: "3 days ago", amount: 25 },
+  { id: "a4", who: "Layla Hassan", action: "posted an update on", target: "Year 4 final exams", when: "5 days ago", amount: 0 },
+  { id: "a5", who: "You", action: "donated $100 to", target: "Layla Hassan's tuition", when: "1 week ago", amount: 100 },
+];
+
