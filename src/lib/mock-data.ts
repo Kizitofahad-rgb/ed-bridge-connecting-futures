@@ -37,9 +37,10 @@ export const requests: FundingRequest[] = [
     photo: s1,
     country: "Nigeria",
     educationLevel: "Undergraduate",
-    title: "Final-year Computer Science tuition",
+    fieldOfStudy: "Computer Science",
+    title: "One semester away from my CS degree",
     story:
-      "I'm one semester away from completing my Computer Science degree at the University of Lagos. After my father's illness, my family can no longer cover tuition. With your support I can graduate and join a software apprenticeship I've already been offered.",
+      "I'm 21, the eldest of four, and one semester away from finishing my Computer Science degree at the University of Lagos. When my father was diagnosed with kidney disease last year, our savings went to dialysis. I started tutoring high-school students at night, but it isn't enough to cover this final semester's tuition. I've already received a conditional offer to join Andela's software apprenticeship — I just need to graduate. With your help, I will. I'll send you my transcript, my final project (a tool that translates Igbo voice notes into text for elderly users), and a video on graduation day.",
     amountNeeded: 1800,
     amountRaised: 1240,
     deadline: "2026-07-15",
@@ -48,6 +49,8 @@ export const requests: FundingRequest[] = [
     trustScore: 94,
     status: "verified",
     school: "University of Lagos",
+    supporters: 87,
+    gpa: "3.8 / 4.0",
   },
   {
     id: "r2",
@@ -55,9 +58,10 @@ export const requests: FundingRequest[] = [
     photo: s2,
     country: "India",
     educationLevel: "Graduate",
-    title: "Master's research equipment",
+    fieldOfStudy: "Renewable Energy Engineering",
+    title: "Solar storage research for rural villages",
     story:
-      "I'm pursuing a Master's in Renewable Energy Engineering. I need funding for sensors and lab materials to complete my thesis on low-cost solar storage for rural villages.",
+      "I grew up in a village in Rajasthan that lost power for 6–8 hours every day. Today I'm in the final year of my Master's at IIT Bombay, building a low-cost solar battery prototype designed for households earning under $4 a day. I've already secured lab space, but I need $950 for sensors, a charge controller, and field-testing travel to three pilot villages. Every rupee will be receipted and reported. If my prototype works, three families I grew up with will have their first reliable evening light.",
     amountNeeded: 950,
     amountRaised: 410,
     deadline: "2026-08-30",
@@ -66,6 +70,8 @@ export const requests: FundingRequest[] = [
     trustScore: 88,
     status: "verified",
     school: "IIT Bombay",
+    supporters: 42,
+    gpa: "9.1 / 10",
   },
   {
     id: "r3",
@@ -73,9 +79,10 @@ export const requests: FundingRequest[] = [
     photo: s3,
     country: "Colombia",
     educationLevel: "Undergraduate",
-    title: "Nursing program textbooks & exam fees",
+    fieldOfStudy: "Nursing",
+    title: "First in my family to wear a nursing uniform",
     story:
-      "I'm the first in my family to attend university. I need help covering nursing textbooks and clinical exam fees so I can continue serving my community.",
+      "My mother cleans hospital floors in Medellín. She's the reason I chose nursing — she said the nurses were the kindest people she met during my brother's surgery. I'm now in my third year and need help covering this term's textbooks, a stethoscope, and my clinical rotation exam fees. After graduation I've committed to two years of service in a rural clinic in Chocó. I will write to every donor when I receive my license.",
     amountNeeded: 620,
     amountRaised: 580,
     deadline: "2026-06-10",
@@ -84,6 +91,8 @@ export const requests: FundingRequest[] = [
     trustScore: 91,
     status: "verified",
     school: "Universidad Nacional",
+    supporters: 64,
+    gpa: "4.3 / 5.0",
   },
   {
     id: "r4",
@@ -91,9 +100,10 @@ export const requests: FundingRequest[] = [
     photo: s4,
     country: "Vietnam",
     educationLevel: "Undergraduate",
-    title: "Engineering laptop for coursework",
+    fieldOfStudy: "Mechanical Engineering",
+    title: "A laptop to finish my engineering degree",
     story:
-      "My laptop broke last semester and I've been borrowing time at the university lab. A reliable laptop will let me complete my CAD coursework and internship applications.",
+      "My laptop died during finals last semester and I've been queuing for the campus lab from 6am to run my CAD assignments. My professor flagged me for an internship at a Hanoi robotics startup, but I need a working laptop to accept it. $700 covers a refurbished engineering-grade machine and a one-year warranty. I'll post a build photo and my first internship paycheck — half of which I'm donating back to Ed-Bridge.",
     amountNeeded: 700,
     amountRaised: 220,
     deadline: "2026-09-01",
@@ -102,6 +112,8 @@ export const requests: FundingRequest[] = [
     trustScore: 85,
     status: "verified",
     school: "Hanoi University of Science",
+    supporters: 19,
+    gpa: "3.6 / 4.0",
   },
   {
     id: "r5",
@@ -109,9 +121,10 @@ export const requests: FundingRequest[] = [
     photo: s5,
     country: "Jordan",
     educationLevel: "Graduate",
-    title: "Medical school tuition assistance",
+    fieldOfStudy: "Medicine",
+    title: "A refugee, a future doctor — bridge the gap",
     story:
-      "As a refugee pursuing medicine, I want to return to underserved communities as a doctor. Help me cover this year's tuition gap.",
+      "My family fled Syria when I was 12. I taught myself enough Arabic medical vocabulary to volunteer in our refugee camp's clinic at 15. I'm now in my fourth year of medical school at the University of Jordan, ranked top 10% of my class. My UNHCR scholarship covers most of tuition but leaves a $2,400 gap this year. I will return to underserved communities — I've already signed a 5-year commitment to Médecins Sans Frontières. Help me become the doctor my younger self needed.",
     amountNeeded: 2400,
     amountRaised: 900,
     deadline: "2026-10-20",
@@ -120,6 +133,8 @@ export const requests: FundingRequest[] = [
     trustScore: 96,
     status: "verified",
     school: "University of Jordan",
+    supporters: 128,
+    gpa: "3.9 / 4.0",
   },
   {
     id: "r6",
@@ -127,9 +142,10 @@ export const requests: FundingRequest[] = [
     photo: s6,
     country: "Kenya",
     educationLevel: "High School",
-    title: "Final-year high school fees",
+    fieldOfStudy: "Sciences (pre-Engineering)",
+    title: "Final year of high school — top of my class",
     story:
-      "I'm a top student in my class hoping to study civil engineering. My parents are smallholder farmers and this year's school fees are out of reach.",
+      "I'm 17, the top math student at Alliance High School, and the son of two smallholder maize farmers in Nyeri. Last year's drought halved our harvest. I dream of studying civil engineering at the University of Nairobi to design rainwater systems for farms like ours. I need $480 to cover this final year's school fees and KCSE exam registration. My headmaster will sign every disbursement receipt.",
     amountNeeded: 480,
     amountRaised: 120,
     deadline: "2026-05-25",
@@ -138,25 +154,8 @@ export const requests: FundingRequest[] = [
     trustScore: 78,
     status: "pending",
     school: "Alliance High School",
-  },
-];
-
-export const myRequests = [
-  {
-    id: "m1",
-    title: "Final-year Computer Science tuition",
-    amountNeeded: 1800,
-    amountRaised: 1240,
-    deadline: "2026-07-15",
-    status: "verified" as RequestStatus,
-  },
-  {
-    id: "m2",
-    title: "Internship travel & housing",
-    amountNeeded: 600,
-    amountRaised: 0,
-    deadline: "2026-06-01",
-    status: "pending" as RequestStatus,
+    supporters: 11,
+    gpa: "A− avg",
   },
 ];
 
