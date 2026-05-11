@@ -143,6 +143,8 @@ function StudentDashboard() {
             </div>
           </section>
         </div>
+
+        <ProofOfImpact studentId="r1" uploadable className="mt-12" />
       </main>
       <SiteFooter />
     </div>
