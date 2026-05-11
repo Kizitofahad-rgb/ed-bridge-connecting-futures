@@ -1,8 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, HeartHandshake, Sparkles, Globe2, GraduationCap, BadgeCheck } from "lucide-react";
+import { ArrowRight, ShieldCheck, HeartHandshake, Sparkles, Globe2, GraduationCap, BadgeCheck, Quote, Lock, Eye, Receipt } from "lucide-react";
 import heroImg from "@/assets/hero-student.jpg";
 import { Button } from "@/components/ui/button";
 import { SiteHeader, SiteFooter } from "@/components/SiteHeader";
+import { ImpactStats } from "@/components/ImpactStats";
 import { successStories } from "@/lib/mock-data";
 
 export const Route = createFileRoute("/")({
