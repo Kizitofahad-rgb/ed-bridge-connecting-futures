@@ -72,6 +72,8 @@ function StudentDashboard() {
             <Link to="/onboarding">Start onboarding <ArrowRight className="h-4 w-4" /></Link>
           </Button>
         </section>
+
+        <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
           {/* Form */}
           <section className="rounded-3xl border border-border/70 bg-card p-7 shadow-[var(--shadow-card)]">
             <h2 className="text-xl font-semibold">Create a funding request</h2>
