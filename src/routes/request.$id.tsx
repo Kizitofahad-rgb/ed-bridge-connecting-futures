@@ -101,6 +101,23 @@ function RequestDetail() {
                 </div>
               ))}
             </div>
+
+            <div className="mt-10 rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-card)]">
+              <div className="flex flex-wrap items-center gap-6">
+                <TrustScoreRing score={r.trustScore} label="Student trust" tier={r.trustScore >= 90 ? "Gold" : "Silver"} size={120} />
+                <div className="flex-1 min-w-[200px]">
+                  <h3 className="text-base font-semibold">How we built this score</h3>
+                  <ul className="mt-2 space-y-1.5 text-sm text-muted-foreground">
+                    <li>· Government-issued ID verified</li>
+                    <li>· Enrollment confirmed by registrar</li>
+                    <li>· Academic transcripts on file</li>
+                    <li>· Past disbursements receipted</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <ProofOfImpact studentId={r.id} className="mt-10" />
           </article>
 
           <aside className="lg:sticky lg:top-24 lg:self-start">
