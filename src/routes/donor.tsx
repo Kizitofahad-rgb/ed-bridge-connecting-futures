@@ -120,7 +120,59 @@ function DonorDashboard() {
           ))}
         </section>
 
-        {/* Main grid */}
+        {/* Donor profile */}
+        <section className="mt-8 rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-card)] sm:p-7">
+          <div className="flex flex-wrap items-start justify-between gap-4">
+            <div className="flex items-center gap-4">
+              <span className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[image:var(--gradient-hero)] text-lg font-semibold text-primary-foreground shadow-[var(--shadow-elegant)]">
+                {donor.name.charAt(0).toUpperCase()}
+              </span>
+              <div>
+                <div className="flex items-center gap-2">
+                  <h2 className="text-lg font-semibold">{donor.name}</h2>
+                  <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-0.5 text-[11px] font-medium text-primary">
+                    <ShieldCheck className="h-3 w-3" /> Verified donor
+                  </span>
+                </div>
+                <p className="text-sm text-muted-foreground">{donor.email}</p>
+              </div>
+            </div>
+            <Button variant="ghost" size="sm" onClick={() => { setDraft({ country: donor.country ?? "", bio: donor.bio ?? "" }); setEditing((v) => !v); }}>
+              {editing ? "Cancel" : (<><Pencil className="h-4 w-4" /> Edit profile</>)}
+            </Button>
+          </div>
+
+          {editing ? (
+            <div className="mt-5 grid gap-4 sm:grid-cols-2">
+              <div className="space-y-2">
+                <Label htmlFor="dcountry">Country</Label>
+                <Input id="dcountry" value={draft.country} onChange={(e) => setDraft((d) => ({ ...d, country: e.target.value }))} placeholder="United States" />
+              </div>
+              <div className="space-y-2 sm:col-span-2">
+                <Label htmlFor="dbio">About you (optional)</Label>
+                <Textarea id="dbio" rows={3} value={draft.bio} onChange={(e) => setDraft((d) => ({ ...d, bio: e.target.value }))} placeholder="A short note students will see when you donate publicly." />
+              </div>
+              <div className="sm:col-span-2">
+                <Button variant="hero" size="sm" onClick={saveProfile}><Check className="h-4 w-4" /> Save changes</Button>
+              </div>
+            </div>
+          ) : (
+            <div className="mt-5 grid gap-3 text-sm sm:grid-cols-3">
+              <div className="rounded-xl border border-border bg-secondary/40 p-3">
+                <div className="text-xs uppercase tracking-wider text-muted-foreground">Country</div>
+                <div className="mt-1 font-medium">{donor.country || "—"}</div>
+              </div>
+              <div className="rounded-xl border border-border bg-secondary/40 p-3">
+                <div className="text-xs uppercase tracking-wider text-muted-foreground">Member since</div>
+                <div className="mt-1 font-medium">{new Date(donor.joined).toLocaleDateString(undefined, { month: "short", year: "numeric" })}</div>
+              </div>
+              <div className="rounded-xl border border-border bg-secondary/40 p-3 sm:col-span-1">
+                <div className="text-xs uppercase tracking-wider text-muted-foreground">About</div>
+                <div className="mt-1 line-clamp-2 text-foreground/90">{donor.bio || "Add a short bio so students can thank you personally."}</div>
+              </div>
+            </div>
+          )}
+        </section>
         <section className="mt-12 grid gap-8 lg:grid-cols-[1fr_320px]">
           <div>
             <div className="mb-6 flex items-end justify-between gap-4">
