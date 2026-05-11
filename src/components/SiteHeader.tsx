@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "@tanstack/react-router";
-import { GraduationCap, LogOut, User } from "lucide-react";
+import { GraduationCap, LogOut, ShieldCheck, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useDonorAuth } from "@/lib/auth";
 import {
