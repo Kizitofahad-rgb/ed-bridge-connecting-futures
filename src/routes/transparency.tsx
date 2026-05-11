@@ -147,7 +147,7 @@ function TransparencyPage() {
               <span className="inline-flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-primary" /> Donations</span>
               <span className="inline-flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-success" /> Milestones</span>
               <span className="inline-flex items-center gap-1"><span className="h-2 w-2 rounded-full bg-warning" /> Updates</span>
-            </ul>
+            </div>
           </div>
         </section>
 
