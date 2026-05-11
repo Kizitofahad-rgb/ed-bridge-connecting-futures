@@ -1,15 +1,7 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
-import tsConfigPaths from 'vite-tsconfig-paths'
-import path from 'path'
+import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), tsConfigPaths()],
-  build: {
-    outDir: 'dist',
-    rollupOptions: {
-      input: path.resolve(__dirname, 'index.html'),
-    },
+  tanstackStart: {
+    server: { entry: "src/server" },   // was "server"
   },
-})
+});
