@@ -8,7 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
-import { DonorAuthProvider } from "@/lib/auth";
+import { EdBridgeProvider } from "@/lib/edbridge/store";
 
 import appCss from "../styles.css?url";
 
@@ -41,9 +41,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
-        <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
-        </h1>
+        <h1 className="text-xl font-semibold tracking-tight text-foreground">This page didn't load</h1>
         <p className="mt-2 text-sm text-muted-foreground">
           Something went wrong on our end. You can try refreshing or head back home.
         </p>
@@ -74,21 +72,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Ed-Bridge — Connect. Support. Grow." },
+      {
+        name: "description",
+        content:
+          "Ed-Bridge connects Makerere students with the people, communities and opportunities that can help them move forward.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
+    links: [{ rel: "stylesheet", href: appCss }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -115,10 +108,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <DonorAuthProvider>
+      <EdBridgeProvider>
         <Outlet />
         <Toaster richColors position="top-right" />
-      </DonorAuthProvider>
+      </EdBridgeProvider>
     </QueryClientProvider>
   );
 }

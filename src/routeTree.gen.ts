@@ -9,21 +9,14 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TransparencyRouteImport } from './routes/transparency'
 import { Route as StudentRouteImport } from './routes/student'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as DonorRouteImport } from './routes/donor'
-import { Route as BrowseRouteImport } from './routes/browse'
+import { Route as ExploreSupportRouteImport } from './routes/explore-support'
+import { Route as ExploreCommunitiesRouteImport } from './routes/explore-communities'
 import { Route as AdminRouteImport } from './routes/admin'
+import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as RequestIdRouteImport } from './routes/request.$id'
 
-const TransparencyRoute = TransparencyRouteImport.update({
-  id: '/transparency',
-  path: '/transparency',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const StudentRoute = StudentRouteImport.update({
   id: '/student',
   path: '/student',
@@ -34,19 +27,14 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
+const ExploreSupportRoute = ExploreSupportRouteImport.update({
+  id: '/explore-support',
+  path: '/explore-support',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DonorRoute = DonorRouteImport.update({
-  id: '/donor',
-  path: '/donor',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BrowseRoute = BrowseRouteImport.update({
-  id: '/browse',
-  path: '/browse',
+const ExploreCommunitiesRoute = ExploreCommunitiesRouteImport.update({
+  id: '/explore-communities',
+  path: '/explore-communities',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -54,108 +42,87 @@ const AdminRoute = AdminRouteImport.update({
   path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RequestIdRoute = RequestIdRouteImport.update({
-  id: '/request/$id',
-  path: '/request/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
-  '/browse': typeof BrowseRoute
-  '/donor': typeof DonorRoute
-  '/login': typeof LoginRoute
+  '/explore-communities': typeof ExploreCommunitiesRoute
+  '/explore-support': typeof ExploreSupportRoute
   '/onboarding': typeof OnboardingRoute
   '/student': typeof StudentRoute
-  '/transparency': typeof TransparencyRoute
-  '/request/$id': typeof RequestIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
-  '/browse': typeof BrowseRoute
-  '/donor': typeof DonorRoute
-  '/login': typeof LoginRoute
+  '/explore-communities': typeof ExploreCommunitiesRoute
+  '/explore-support': typeof ExploreSupportRoute
   '/onboarding': typeof OnboardingRoute
   '/student': typeof StudentRoute
-  '/transparency': typeof TransparencyRoute
-  '/request/$id': typeof RequestIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
-  '/browse': typeof BrowseRoute
-  '/donor': typeof DonorRoute
-  '/login': typeof LoginRoute
+  '/explore-communities': typeof ExploreCommunitiesRoute
+  '/explore-support': typeof ExploreSupportRoute
   '/onboarding': typeof OnboardingRoute
   '/student': typeof StudentRoute
-  '/transparency': typeof TransparencyRoute
-  '/request/$id': typeof RequestIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/about'
     | '/admin'
-    | '/browse'
-    | '/donor'
-    | '/login'
+    | '/explore-communities'
+    | '/explore-support'
     | '/onboarding'
     | '/student'
-    | '/transparency'
-    | '/request/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/about'
     | '/admin'
-    | '/browse'
-    | '/donor'
-    | '/login'
+    | '/explore-communities'
+    | '/explore-support'
     | '/onboarding'
     | '/student'
-    | '/transparency'
-    | '/request/$id'
   id:
     | '__root__'
     | '/'
+    | '/about'
     | '/admin'
-    | '/browse'
-    | '/donor'
-    | '/login'
+    | '/explore-communities'
+    | '/explore-support'
     | '/onboarding'
     | '/student'
-    | '/transparency'
-    | '/request/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
-  BrowseRoute: typeof BrowseRoute
-  DonorRoute: typeof DonorRoute
-  LoginRoute: typeof LoginRoute
+  ExploreCommunitiesRoute: typeof ExploreCommunitiesRoute
+  ExploreSupportRoute: typeof ExploreSupportRoute
   OnboardingRoute: typeof OnboardingRoute
   StudentRoute: typeof StudentRoute
-  TransparencyRoute: typeof TransparencyRoute
-  RequestIdRoute: typeof RequestIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/transparency': {
-      id: '/transparency'
-      path: '/transparency'
-      fullPath: '/transparency'
-      preLoaderRoute: typeof TransparencyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/student': {
       id: '/student'
       path: '/student'
@@ -170,25 +137,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
+    '/explore-support': {
+      id: '/explore-support'
+      path: '/explore-support'
+      fullPath: '/explore-support'
+      preLoaderRoute: typeof ExploreSupportRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/donor': {
-      id: '/donor'
-      path: '/donor'
-      fullPath: '/donor'
-      preLoaderRoute: typeof DonorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/browse': {
-      id: '/browse'
-      path: '/browse'
-      fullPath: '/browse'
-      preLoaderRoute: typeof BrowseRouteImport
+    '/explore-communities': {
+      id: '/explore-communities'
+      path: '/explore-communities'
+      fullPath: '/explore-communities'
+      preLoaderRoute: typeof ExploreCommunitiesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -198,6 +158,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -205,26 +172,17 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/request/$id': {
-      id: '/request/$id'
-      path: '/request/$id'
-      fullPath: '/request/$id'
-      preLoaderRoute: typeof RequestIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
-  BrowseRoute: BrowseRoute,
-  DonorRoute: DonorRoute,
-  LoginRoute: LoginRoute,
+  ExploreCommunitiesRoute: ExploreCommunitiesRoute,
+  ExploreSupportRoute: ExploreSupportRoute,
   OnboardingRoute: OnboardingRoute,
   StudentRoute: StudentRoute,
-  TransparencyRoute: TransparencyRoute,
-  RequestIdRoute: RequestIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
