@@ -1,235 +1,214 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowRight, ShieldCheck, HeartHandshake, Sparkles, Globe2, GraduationCap, BadgeCheck, Quote, Lock, Eye, Receipt } from "lucide-react";
-import heroImg from "@/assets/hero-student.jpg";
+import {
+  ArrowRight,
+  BadgeCheck,
+  Briefcase,
+  HeartHandshake,
+  Laptop,
+  Lightbulb,
+  Network,
+  ShieldCheck,
+  Sparkles,
+  Users,
+} from "lucide-react";
+import { AppShell } from "@/components/edbridge/AppShell";
+import { NetworkGraph } from "@/components/edbridge/NetworkGraph";
+import { CommunityCard, RequestCard, StatTile } from "@/components/edbridge/pieces";
 import { Button } from "@/components/ui/button";
-import { SiteHeader, SiteFooter } from "@/components/SiteHeader";
-import { ImpactStats } from "@/components/ImpactStats";
-import { successStories } from "@/lib/mock-data";
+import { communities, supportRequests, campaign } from "@/lib/edbridge/data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ed-Bridge — Bridging Students to Opportunity" },
-      { name: "description", content: "A global education funding platform connecting students with donors who believe in their potential." },
-      { property: "og:title", content: "Ed-Bridge — Bridging Students to Opportunity" },
-      { property: "og:description", content: "Direct, transparent education funding for students worldwide." },
+      { title: "Ed-Bridge — Connect. Support. Grow." },
+      {
+        name: "description",
+        content:
+          "Ed-Bridge connects Makerere students with the people, communities and opportunities that can help them move forward.",
+      },
+      { property: "og:title", content: "Ed-Bridge — Connect. Support. Grow." },
+      {
+        property: "og:description",
+        content: "A trusted student support and opportunity network, starting at Makerere University.",
+      },
     ],
   }),
   component: Landing,
 });
 
+const ways = [
+  { icon: HeartHandshake, title: "Financial support", body: "Help clear a verified tuition or accommodation balance." },
+  { icon: Lightbulb, title: "Mentorship", body: "Give a student a few hours of guidance in your field." },
+  { icon: Laptop, title: "Resources", body: "Lend or donate a laptop, textbooks or lab equipment." },
+  { icon: Briefcase, title: "Opportunities", body: "Refer an internship, scholarship or part-time role." },
+  { icon: Users, title: "Referrals", body: "Introduce a student to someone who can actually help." },
+  { icon: Network, title: "Amplification", body: "Share a verified need with a community that can respond." },
+];
+
 function Landing() {
   return (
-    <div className="min-h-screen bg-background">
-      <SiteHeader />
-
-      {/* Hero */}
+    <AppShell>
       <section className="relative overflow-hidden">
         <div className="pointer-events-none absolute inset-0 -z-10 bg-[image:var(--gradient-soft)]" />
-        <div className="pointer-events-none absolute -right-32 -top-32 -z-10 h-[480px] w-[480px] rounded-full bg-primary/10 blur-3xl" />
-        <div className="pointer-events-none absolute -left-32 top-40 -z-10 h-[360px] w-[360px] rounded-full bg-accent/20 blur-3xl" />
-
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:py-28">
+        <div className="pointer-events-none absolute -right-32 -top-32 -z-10 h-[420px] w-[420px] rounded-full bg-connection/10 blur-3xl" />
+        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2 lg:py-24">
           <div>
             <span className="inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/70 px-3 py-1 text-xs font-medium text-muted-foreground backdrop-blur">
-              <Sparkles className="h-3.5 w-3.5 text-primary" /> Global education equity, made personal
+              <Sparkles className="h-3.5 w-3.5 text-connection" /> Starting at Makerere University
             </span>
-            <h1 className="mt-5 text-balance text-5xl font-semibold tracking-tight text-foreground sm:text-6xl">
-              Bridging Students to <span className="bg-[image:var(--gradient-hero)] bg-clip-text text-transparent">Opportunity</span>
+            <h1 className="mt-5 text-balance text-5xl font-semibold tracking-tight sm:text-6xl">
+              Connect. Support. <span className="bg-[image:var(--gradient-hero)] bg-clip-text text-transparent">Grow.</span>
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-muted-foreground">
-              Ed-Bridge connects students facing financial barriers with donors who believe in their future — directly,
-              transparently, and verifiably. Every dollar tells a story.
+              Ed-Bridge connects students with the people, communities and opportunities that can help them move forward.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" variant="hero">
-                <Link to="/student">Get Support <ArrowRight className="h-4 w-4" /></Link>
+              <Button asChild size="lg">
+                <Link to="/explore-support">
+                  Explore Ed-Bridge <ArrowRight className="h-4 w-4" />
+                </Link>
               </Button>
-              <Button asChild size="lg" variant="soft">
-                <Link to="/browse">Become a Donor</Link>
+              <Button asChild size="lg" variant="outline">
+                <Link to="/about">See how it works</Link>
               </Button>
             </div>
-
-            <div className="mt-10 grid max-w-md grid-cols-3 gap-6">
-              {[
-                { k: "12,400+", v: "Students funded" },
-                { k: "$3.8M", v: "Directly delivered" },
-                { k: "62", v: "Countries reached" },
-              ].map((s) => (
-                <div key={s.v}>
-                  <div className="text-2xl font-semibold text-foreground">{s.k}</div>
-                  <div className="text-xs text-muted-foreground">{s.v}</div>
-                </div>
-              ))}
-            </div>
+            <p className="mt-6 text-sm font-medium text-connection">"We rise by lifting others."</p>
           </div>
-
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-3xl border border-border/60 shadow-[var(--shadow-elegant)]">
-              <img src={heroImg} alt="A student smiling, holding books" width={1280} height={960} className="h-full w-full object-cover" />
-            </div>
-            <div className="absolute -bottom-6 -left-6 hidden w-64 rounded-2xl border border-border/60 bg-card p-4 shadow-[var(--shadow-card)] sm:block">
-              <div className="flex items-center gap-3">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-success/15 text-success">
-                  <BadgeCheck className="h-5 w-5" />
-                </span>
-                <div>
-                  <div className="text-sm font-semibold">Verified Student</div>
-                  <div className="text-xs text-muted-foreground">Identity & enrollment confirmed</div>
-                </div>
-              </div>
-            </div>
-            <div className="absolute -right-4 top-8 hidden w-56 rounded-2xl border border-border/60 bg-card p-4 shadow-[var(--shadow-card)] sm:block">
-              <div className="text-xs text-muted-foreground">Tuition · Lagos</div>
-              <div className="mt-1 flex items-baseline gap-1">
-                <span className="text-xl font-semibold">$1,240</span>
-                <span className="text-xs text-muted-foreground">/ $1,800</span>
-              </div>
-              <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-muted">
-                <div className="h-full w-2/3 rounded-full bg-[image:var(--gradient-hero)]" />
-              </div>
-            </div>
-          </div>
+          <NetworkGraph centerLabel="Student" />
         </div>
       </section>
 
-      {/* Impact stats */}
-      <ImpactStats />
-
-      {/* Transparency badges */}
-      <section className="mx-auto max-w-7xl px-6 pt-16">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            { icon: ShieldCheck, t: "ID-verified students", d: "Government ID + enrollment letter" },
-            { icon: Receipt, t: "100% direct delivery", d: "Funds wired to the institution" },
-            { icon: Eye, t: "Public donation ledger", d: "Every contribution traceable" },
-            { icon: Lock, t: "Zero platform fees", d: "Operations covered by foundations" },
-          ].map((b) => (
-            <div key={b.t} className="flex items-start gap-3 rounded-2xl border border-border/70 bg-card p-4 transition-colors hover:border-primary/30">
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <b.icon className="h-5 w-5" />
-              </span>
-              <div>
-                <div className="text-sm font-semibold text-foreground">{b.t}</div>
-                <div className="text-xs text-muted-foreground">{b.d}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* How it works */}
-      <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">How Ed-Bridge works</h2>
-          <p className="mt-3 text-muted-foreground">Three simple steps from need to opportunity.</p>
-        </div>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {[
-            { icon: GraduationCap, title: "Students share their story", desc: "Verified students publish a funding request with documents and a clear goal." },
-            { icon: ShieldCheck, title: "We verify everything", desc: "Our team reviews identity, enrollment, and need before requests go live." },
-            { icon: HeartHandshake, title: "Donors fund directly", desc: "Contribute any amount. 100% reaches the student. Track impact in real time." },
-          ].map((step, i) => (
-            <div key={step.title} className="relative rounded-2xl border border-border/70 bg-card p-7 shadow-[var(--shadow-card)]">
-              <div className="absolute right-5 top-5 text-5xl font-bold leading-none text-primary/10">0{i + 1}</div>
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                <step.icon className="h-5 w-5" />
-              </span>
-              <h3 className="mt-5 text-lg font-semibold">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.desc}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Trust */}
-      <section className="bg-secondary/40 py-20">
-        <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-2">
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <div className="grid gap-6 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-primary">Transparency & trust</span>
-            <h2 className="mt-3 text-3xl font-semibold tracking-tight sm:text-4xl">Every dollar, every milestone — visible.</h2>
+            <h2 className="text-3xl font-semibold tracking-tight">The problem is rarely only money</h2>
             <p className="mt-4 text-muted-foreground">
-              We believe radical transparency is the only way philanthropy scales. Each student receives a trust score,
-              every donation is publicly tracked, and milestones are confirmed before funds release.
+              A student who misses exam registration by UGX 350,000 usually knows nobody who can help — even though someone
+              in their college, their course or their old secondary school could. Crowdfunding sends strangers a link.
+              Ed-Bridge surfaces the people already connected to that student.
             </p>
             <ul className="mt-6 space-y-3 text-sm">
-              {["Independent identity & enrollment verification", "Trust score updated with each milestone", "Public ledger of donations and outcomes", "Direct delivery — no platform fees"].map((t) => (
-                <li key={t} className="flex items-start gap-3"><BadgeCheck className="mt-0.5 h-5 w-5 text-success" /> <span className="text-foreground">{t}</span></li>
+              {[
+                "Verified student needs, not anonymous appeals",
+                "Support that can be money, mentorship, a laptop or an introduction",
+                "Communities — colleges, courses, school alumni — as the unit of trust",
+              ].map((t) => (
+                <li key={t} className="flex items-start gap-2">
+                  <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-success" /> {t}
+                </li>
               ))}
             </ul>
           </div>
           <div className="grid grid-cols-2 gap-4">
+            <StatTile label="Students supported" value={216} icon={Users} />
+            <StatTile label="Mentorship sessions" value={462} icon={Lightbulb} />
+            <StatTile label="Opportunities shared" value={172} icon={Briefcase} />
+            <StatTile label="Communities" value={communities.length} icon={Network} />
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border/60 bg-secondary/30 py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <h2 className="text-3xl font-semibold tracking-tight">How it works</h2>
+          <div className="mt-8 grid gap-5 md:grid-cols-4">
             {[
-              { k: "100%", v: "of funds reach students" },
-              { k: "98%", v: "verified completion rate" },
-              { k: "24h", v: "avg verification time" },
-              { k: "4.9/5", v: "donor trust rating" },
-            ].map((c) => (
-              <div key={c.v} className="rounded-2xl border border-border/70 bg-card p-6 shadow-[var(--shadow-card)]">
-                <div className="text-3xl font-semibold text-foreground">{c.k}</div>
-                <div className="mt-1 text-sm text-muted-foreground">{c.v}</div>
+              ["Join your communities", "College, course, secondary school alumni and student organizations."],
+              ["See who is around you", "Discover people connected to you by verified shared background."],
+              ["Give or receive support", "Money, mentorship, resources, opportunities or a referral."],
+              ["Build a verified record", "Every action becomes a traceable entry in your Impact Passport."],
+            ].map(([title, body], i) => (
+              <div key={title} className="rounded-2xl border border-border/70 bg-card p-5 shadow-[var(--shadow-card)]">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-connection/10 text-sm font-semibold text-connection">
+                  {i + 1}
+                </span>
+                <h3 className="mt-3 font-semibold">{title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{body}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Stories */}
-      <section className="mx-auto max-w-7xl px-6 py-20">
-        <div className="flex items-end justify-between gap-4">
-          <div>
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Student success stories</h2>
-            <p className="mt-2 text-muted-foreground">Real graduates. Real careers. Powered by donors like you.</p>
-          </div>
-          <Globe2 className="hidden h-10 w-10 text-primary/40 sm:block" />
-        </div>
-        <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {successStories.map((s) => (
-            <figure key={s.name} className="group flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-[var(--shadow-card)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-[var(--shadow-elegant)]">
-              <div className="relative h-44 overflow-hidden">
-                <img src={s.photo} alt={s.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0" />
-                <span className="absolute left-3 top-3 rounded-full bg-success/90 px-2.5 py-1 text-[11px] font-medium text-success-foreground shadow-sm">
-                  Funded · ${s.amountFunded.toLocaleString()}
-                </span>
-                <div className="absolute inset-x-3 bottom-3 text-xs font-medium text-white/90">{s.country}</div>
-              </div>
-              <div className="flex flex-1 flex-col p-6">
-                <Quote className="h-5 w-5 text-primary/40" />
-                <blockquote className="mt-2 leading-relaxed text-foreground/90">{s.quote}</blockquote>
-                <figcaption className="mt-5 flex items-center justify-between border-t border-border/60 pt-4">
-                  <div>
-                    <div className="font-semibold">{s.name}</div>
-                    <div className="text-xs text-muted-foreground">{s.role}</div>
-                  </div>
-                  <div className="text-right text-xs text-muted-foreground">
-                    <div className="font-semibold text-foreground">{s.supporters}</div>
-                    <div>supporters</div>
-                  </div>
-                </figcaption>
-              </div>
-            </figure>
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <h2 className="text-3xl font-semibold tracking-tight">Different ways to support</h2>
+        <p className="mt-2 text-muted-foreground">You do not need money to change a student's semester.</p>
+        <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          {ways.map((w) => (
+            <div key={w.title} className="rounded-2xl border border-border/70 bg-card p-5 shadow-[var(--shadow-card)] transition-transform hover:-translate-y-1">
+              <w.icon className="h-5 w-5 text-primary" />
+              <h3 className="mt-3 font-semibold">{w.title}</h3>
+              <p className="mt-1 text-sm text-muted-foreground">{w.body}</p>
+            </div>
           ))}
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="px-6 pb-24">
-        <div className="mx-auto max-w-6xl overflow-hidden rounded-3xl bg-[image:var(--gradient-hero)] p-12 text-primary-foreground shadow-[var(--shadow-elegant)] sm:p-16">
-          <div className="grid items-center gap-6 sm:grid-cols-[1fr_auto]">
+      <section className="border-y border-border/60 bg-secondary/30 py-16">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Be someone's bridge today.</h2>
-              <p className="mt-3 max-w-xl text-primary-foreground/90">Browse verified students and fund the future directly. Or start your own request — we'll guide you.</p>
+              <h2 className="text-3xl font-semibold tracking-tight">The community network</h2>
+              <p className="mt-2 text-muted-foreground">Communities rank by students helped — never by money raised.</p>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <Button asChild size="lg" variant="secondary"><Link to="/browse">Browse students</Link></Button>
-              <Button asChild size="lg" variant="outline" className="border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"><Link to="/student">Apply for support</Link></Button>
-            </div>
+            <Button asChild variant="outline">
+              <Link to="/explore-communities">All communities</Link>
+            </Button>
+          </div>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {communities.slice(0, 3).map((c) => (
+              <CommunityCard key={c.id} community={c} />
+            ))}
           </div>
         </div>
       </section>
 
-      <SiteFooter />
-    </div>
+      <section className="mx-auto max-w-7xl px-6 py-16">
+        <div className="flex flex-wrap items-end justify-between gap-4">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight">Verified student needs</h2>
+            <p className="mt-2 text-muted-foreground">Each request passes identity, student status, document and human review.</p>
+          </div>
+          <Button asChild variant="outline">
+            <Link to="/explore-support">Explore all support</Link>
+          </Button>
+        </div>
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {supportRequests.slice(0, 3).map((r) => (
+            <RequestCard key={r.id} request={r} />
+          ))}
+        </div>
+      </section>
+
+      <section className="border-t border-border/60 bg-secondary/30 py-16">
+        <div className="mx-auto grid max-w-7xl gap-8 px-6 lg:grid-cols-2 lg:items-center">
+          <div>
+            <h2 className="text-3xl font-semibold tracking-tight">Transparent impact</h2>
+            <p className="mt-3 text-muted-foreground">
+              The {campaign.name} campaign has supported {campaign.supportedStudents} of {campaign.goalStudents} students,
+              delivered {campaign.laptops} laptops and {campaign.tablets} tablets, and logged{" "}
+              {campaign.mentorshipSessions} mentorship sessions this semester.
+            </p>
+            <p className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-success">
+              <ShieldCheck className="h-4 w-4" /> Every contribution creates a traceable impact record.
+            </p>
+          </div>
+          <div className="rounded-2xl border border-border/70 bg-card p-6 text-center shadow-[var(--shadow-card)]">
+            <h3 className="text-2xl font-semibold">Ready to see the network?</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Walk through the prototype as a student, supporter, community or organization.
+            </p>
+            <div className="mt-5 flex flex-wrap justify-center gap-3">
+              <Button asChild size="lg">
+                <Link to="/onboarding">Start onboarding</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline">
+                <Link to="/supporter">I want to help</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </AppShell>
   );
 }
