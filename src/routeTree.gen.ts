@@ -9,21 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as TransparencyRouteImport } from './routes/transparency'
 import { Route as StudentRouteImport } from './routes/student'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as LoginRouteImport } from './routes/login'
-import { Route as DonorRouteImport } from './routes/donor'
-import { Route as BrowseRouteImport } from './routes/browse'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as RequestIdRouteImport } from './routes/request.$id'
 
-const TransparencyRoute = TransparencyRouteImport.update({
-  id: '/transparency',
-  path: '/transparency',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const StudentRoute = StudentRouteImport.update({
   id: '/student',
   path: '/student',
@@ -32,21 +22,6 @@ const StudentRoute = StudentRouteImport.update({
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DonorRoute = DonorRouteImport.update({
-  id: '/donor',
-  path: '/donor',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BrowseRoute = BrowseRouteImport.update({
-  id: '/browse',
-  path: '/browse',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -59,103 +34,43 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const RequestIdRoute = RequestIdRouteImport.update({
-  id: '/request/$id',
-  path: '/request/$id',
-  getParentRoute: () => rootRouteImport,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/browse': typeof BrowseRoute
-  '/donor': typeof DonorRoute
-  '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
   '/student': typeof StudentRoute
-  '/transparency': typeof TransparencyRoute
-  '/request/$id': typeof RequestIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/browse': typeof BrowseRoute
-  '/donor': typeof DonorRoute
-  '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
   '/student': typeof StudentRoute
-  '/transparency': typeof TransparencyRoute
-  '/request/$id': typeof RequestIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/admin': typeof AdminRoute
-  '/browse': typeof BrowseRoute
-  '/donor': typeof DonorRoute
-  '/login': typeof LoginRoute
   '/onboarding': typeof OnboardingRoute
   '/student': typeof StudentRoute
-  '/transparency': typeof TransparencyRoute
-  '/request/$id': typeof RequestIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/admin'
-    | '/browse'
-    | '/donor'
-    | '/login'
-    | '/onboarding'
-    | '/student'
-    | '/transparency'
-    | '/request/$id'
+  fullPaths: '/' | '/admin' | '/onboarding' | '/student'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/admin'
-    | '/browse'
-    | '/donor'
-    | '/login'
-    | '/onboarding'
-    | '/student'
-    | '/transparency'
-    | '/request/$id'
-  id:
-    | '__root__'
-    | '/'
-    | '/admin'
-    | '/browse'
-    | '/donor'
-    | '/login'
-    | '/onboarding'
-    | '/student'
-    | '/transparency'
-    | '/request/$id'
+  to: '/' | '/admin' | '/onboarding' | '/student'
+  id: '__root__' | '/' | '/admin' | '/onboarding' | '/student'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminRoute: typeof AdminRoute
-  BrowseRoute: typeof BrowseRoute
-  DonorRoute: typeof DonorRoute
-  LoginRoute: typeof LoginRoute
   OnboardingRoute: typeof OnboardingRoute
   StudentRoute: typeof StudentRoute
-  TransparencyRoute: typeof TransparencyRoute
-  RequestIdRoute: typeof RequestIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/transparency': {
-      id: '/transparency'
-      path: '/transparency'
-      fullPath: '/transparency'
-      preLoaderRoute: typeof TransparencyRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/student': {
       id: '/student'
       path: '/student'
@@ -168,27 +83,6 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/donor': {
-      id: '/donor'
-      path: '/donor'
-      fullPath: '/donor'
-      preLoaderRoute: typeof DonorRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/browse': {
-      id: '/browse'
-      path: '/browse'
-      fullPath: '/browse'
-      preLoaderRoute: typeof BrowseRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -205,26 +99,14 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/request/$id': {
-      id: '/request/$id'
-      path: '/request/$id'
-      fullPath: '/request/$id'
-      preLoaderRoute: typeof RequestIdRouteImport
-      parentRoute: typeof rootRouteImport
-    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminRoute: AdminRoute,
-  BrowseRoute: BrowseRoute,
-  DonorRoute: DonorRoute,
-  LoginRoute: LoginRoute,
   OnboardingRoute: OnboardingRoute,
   StudentRoute: StudentRoute,
-  TransparencyRoute: TransparencyRoute,
-  RequestIdRoute: RequestIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
