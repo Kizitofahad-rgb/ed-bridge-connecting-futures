@@ -9,8 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SupporterRouteImport } from './routes/supporter'
 import { Route as StudentRouteImport } from './routes/student'
+import { Route as OrganizationRouteImport } from './routes/organization'
+import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as ExploreSupportRouteImport } from './routes/explore-support'
 import { Route as ExploreCommunitiesRouteImport } from './routes/explore-communities'
 import { Route as DiscoverRouteImport } from './routes/discover'
@@ -18,14 +23,39 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SupporterRoute = SupporterRouteImport.update({
+  id: '/supporter',
+  path: '/supporter',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudentRoute = StudentRouteImport.update({
   id: '/student',
   path: '/student',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrganizationRoute = OrganizationRouteImport.update({
+  id: '/organization',
+  path: '/organization',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpportunitiesRoute = OpportunitiesRouteImport.update({
+  id: '/opportunities',
+  path: '/opportunities',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExploreSupportRoute = ExploreSupportRouteImport.update({
@@ -66,8 +96,13 @@ export interface FileRoutesByFullPath {
   '/discover': typeof DiscoverRoute
   '/explore-communities': typeof ExploreCommunitiesRoute
   '/explore-support': typeof ExploreSupportRoute
+  '/impact': typeof ImpactRoute
+  '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/organization': typeof OrganizationRoute
   '/student': typeof StudentRoute
+  '/supporter': typeof SupporterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -76,8 +111,13 @@ export interface FileRoutesByTo {
   '/discover': typeof DiscoverRoute
   '/explore-communities': typeof ExploreCommunitiesRoute
   '/explore-support': typeof ExploreSupportRoute
+  '/impact': typeof ImpactRoute
+  '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/organization': typeof OrganizationRoute
   '/student': typeof StudentRoute
+  '/supporter': typeof SupporterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -87,8 +127,13 @@ export interface FileRoutesById {
   '/discover': typeof DiscoverRoute
   '/explore-communities': typeof ExploreCommunitiesRoute
   '/explore-support': typeof ExploreSupportRoute
+  '/impact': typeof ImpactRoute
+  '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/organization': typeof OrganizationRoute
   '/student': typeof StudentRoute
+  '/supporter': typeof SupporterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -99,8 +144,13 @@ export interface FileRouteTypes {
     | '/discover'
     | '/explore-communities'
     | '/explore-support'
+    | '/impact'
+    | '/notifications'
     | '/onboarding'
+    | '/opportunities'
+    | '/organization'
     | '/student'
+    | '/supporter'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -109,8 +159,13 @@ export interface FileRouteTypes {
     | '/discover'
     | '/explore-communities'
     | '/explore-support'
+    | '/impact'
+    | '/notifications'
     | '/onboarding'
+    | '/opportunities'
+    | '/organization'
     | '/student'
+    | '/supporter'
   id:
     | '__root__'
     | '/'
@@ -119,8 +174,13 @@ export interface FileRouteTypes {
     | '/discover'
     | '/explore-communities'
     | '/explore-support'
+    | '/impact'
+    | '/notifications'
     | '/onboarding'
+    | '/opportunities'
+    | '/organization'
     | '/student'
+    | '/supporter'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -130,12 +190,24 @@ export interface RootRouteChildren {
   DiscoverRoute: typeof DiscoverRoute
   ExploreCommunitiesRoute: typeof ExploreCommunitiesRoute
   ExploreSupportRoute: typeof ExploreSupportRoute
+  ImpactRoute: typeof ImpactRoute
+  NotificationsRoute: typeof NotificationsRoute
   OnboardingRoute: typeof OnboardingRoute
+  OpportunitiesRoute: typeof OpportunitiesRoute
+  OrganizationRoute: typeof OrganizationRoute
   StudentRoute: typeof StudentRoute
+  SupporterRoute: typeof SupporterRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/supporter': {
+      id: '/supporter'
+      path: '/supporter'
+      fullPath: '/supporter'
+      preLoaderRoute: typeof SupporterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/student': {
       id: '/student'
       path: '/student'
@@ -143,11 +215,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/organization': {
+      id: '/organization'
+      path: '/organization'
+      fullPath: '/organization'
+      preLoaderRoute: typeof OrganizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/opportunities': {
+      id: '/opportunities'
+      path: '/opportunities'
+      fullPath: '/opportunities'
+      preLoaderRoute: typeof OpportunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding': {
       id: '/onboarding'
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/explore-support': {
@@ -202,8 +302,13 @@ const rootRouteChildren: RootRouteChildren = {
   DiscoverRoute: DiscoverRoute,
   ExploreCommunitiesRoute: ExploreCommunitiesRoute,
   ExploreSupportRoute: ExploreSupportRoute,
+  ImpactRoute: ImpactRoute,
+  NotificationsRoute: NotificationsRoute,
   OnboardingRoute: OnboardingRoute,
+  OpportunitiesRoute: OpportunitiesRoute,
+  OrganizationRoute: OrganizationRoute,
   StudentRoute: StudentRoute,
+  SupporterRoute: SupporterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
