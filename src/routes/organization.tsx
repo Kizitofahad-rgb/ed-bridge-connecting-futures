@@ -36,12 +36,12 @@ function OrganizationView() {
         <section className="mb-8 rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-card)]">
           <h2 className="text-lg font-semibold">{campaign.name}</h2>
           <p className="mt-1 text-sm text-muted-foreground">
-            Goal {campaign.goalStudents} students · {campaign.supported} supported · {campaign.laptops} laptops · {campaign.tablets} tablets · {campaign.mentorshipSessions} mentorship sessions
+            Goal {campaign.goalStudents} students · {campaign.supportedStudents} supported · {campaign.laptops} laptops · {campaign.tablets} tablets · {campaign.mentorshipSessions} mentorship sessions
           </p>
           <div className="mt-4 h-2 overflow-hidden rounded-full bg-secondary">
             <div
               className="h-full rounded-full bg-[image:var(--gradient-hero)]"
-              style={{ width: `${Math.round((campaign.supported / campaign.goalStudents) * 100)}%` }}
+              style={{ width: `${Math.round((campaign.supportedStudents / campaign.goalStudents) * 100)}%` }}
             />
           </div>
           <p className="mt-2 text-xs text-muted-foreground">Every contribution creates a traceable impact record.</p>
