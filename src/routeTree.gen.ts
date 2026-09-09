@@ -9,22 +9,55 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SupporterRouteImport } from './routes/supporter'
 import { Route as StudentRouteImport } from './routes/student'
+import { Route as OrganizationRouteImport } from './routes/organization'
+import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as ExploreSupportRouteImport } from './routes/explore-support'
 import { Route as ExploreCommunitiesRouteImport } from './routes/explore-communities'
+import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SupportIdRouteImport } from './routes/support.$id'
+import { Route as CommunityIdRouteImport } from './routes/community.$id'
 
+const SupporterRoute = SupporterRouteImport.update({
+  id: '/supporter',
+  path: '/supporter',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudentRoute = StudentRouteImport.update({
   id: '/student',
   path: '/student',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrganizationRoute = OrganizationRouteImport.update({
+  id: '/organization',
+  path: '/organization',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpportunitiesRoute = OpportunitiesRouteImport.update({
+  id: '/opportunities',
+  path: '/opportunities',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExploreSupportRoute = ExploreSupportRouteImport.update({
@@ -35,6 +68,11 @@ const ExploreSupportRoute = ExploreSupportRouteImport.update({
 const ExploreCommunitiesRoute = ExploreCommunitiesRouteImport.update({
   id: '/explore-communities',
   path: '/explore-communities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -52,34 +90,68 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SupportIdRoute = SupportIdRouteImport.update({
+  id: '/support/$id',
+  path: '/support/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityIdRoute = CommunityIdRouteImport.update({
+  id: '/community/$id',
+  path: '/community/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/discover': typeof DiscoverRoute
   '/explore-communities': typeof ExploreCommunitiesRoute
   '/explore-support': typeof ExploreSupportRoute
+  '/impact': typeof ImpactRoute
+  '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/organization': typeof OrganizationRoute
   '/student': typeof StudentRoute
+  '/supporter': typeof SupporterRoute
+  '/community/$id': typeof CommunityIdRoute
+  '/support/$id': typeof SupportIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/discover': typeof DiscoverRoute
   '/explore-communities': typeof ExploreCommunitiesRoute
   '/explore-support': typeof ExploreSupportRoute
+  '/impact': typeof ImpactRoute
+  '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/organization': typeof OrganizationRoute
   '/student': typeof StudentRoute
+  '/supporter': typeof SupporterRoute
+  '/community/$id': typeof CommunityIdRoute
+  '/support/$id': typeof SupportIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/discover': typeof DiscoverRoute
   '/explore-communities': typeof ExploreCommunitiesRoute
   '/explore-support': typeof ExploreSupportRoute
+  '/impact': typeof ImpactRoute
+  '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
+  '/opportunities': typeof OpportunitiesRoute
+  '/organization': typeof OrganizationRoute
   '/student': typeof StudentRoute
+  '/supporter': typeof SupporterRoute
+  '/community/$id': typeof CommunityIdRoute
+  '/support/$id': typeof SupportIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -87,42 +159,81 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/discover'
     | '/explore-communities'
     | '/explore-support'
+    | '/impact'
+    | '/notifications'
     | '/onboarding'
+    | '/opportunities'
+    | '/organization'
     | '/student'
+    | '/supporter'
+    | '/community/$id'
+    | '/support/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/admin'
+    | '/discover'
     | '/explore-communities'
     | '/explore-support'
+    | '/impact'
+    | '/notifications'
     | '/onboarding'
+    | '/opportunities'
+    | '/organization'
     | '/student'
+    | '/supporter'
+    | '/community/$id'
+    | '/support/$id'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/admin'
+    | '/discover'
     | '/explore-communities'
     | '/explore-support'
+    | '/impact'
+    | '/notifications'
     | '/onboarding'
+    | '/opportunities'
+    | '/organization'
     | '/student'
+    | '/supporter'
+    | '/community/$id'
+    | '/support/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
+  DiscoverRoute: typeof DiscoverRoute
   ExploreCommunitiesRoute: typeof ExploreCommunitiesRoute
   ExploreSupportRoute: typeof ExploreSupportRoute
+  ImpactRoute: typeof ImpactRoute
+  NotificationsRoute: typeof NotificationsRoute
   OnboardingRoute: typeof OnboardingRoute
+  OpportunitiesRoute: typeof OpportunitiesRoute
+  OrganizationRoute: typeof OrganizationRoute
   StudentRoute: typeof StudentRoute
+  SupporterRoute: typeof SupporterRoute
+  CommunityIdRoute: typeof CommunityIdRoute
+  SupportIdRoute: typeof SupportIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/supporter': {
+      id: '/supporter'
+      path: '/supporter'
+      fullPath: '/supporter'
+      preLoaderRoute: typeof SupporterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/student': {
       id: '/student'
       path: '/student'
@@ -130,11 +241,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/organization': {
+      id: '/organization'
+      path: '/organization'
+      fullPath: '/organization'
+      preLoaderRoute: typeof OrganizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/opportunities': {
+      id: '/opportunities'
+      path: '/opportunities'
+      fullPath: '/opportunities'
+      preLoaderRoute: typeof OpportunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/onboarding': {
       id: '/onboarding'
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/explore-support': {
@@ -149,6 +288,13 @@ declare module '@tanstack/react-router' {
       path: '/explore-communities'
       fullPath: '/explore-communities'
       preLoaderRoute: typeof ExploreCommunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -172,6 +318,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/support/$id': {
+      id: '/support/$id'
+      path: '/support/$id'
+      fullPath: '/support/$id'
+      preLoaderRoute: typeof SupportIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community/$id': {
+      id: '/community/$id'
+      path: '/community/$id'
+      fullPath: '/community/$id'
+      preLoaderRoute: typeof CommunityIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -179,10 +339,18 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
+  DiscoverRoute: DiscoverRoute,
   ExploreCommunitiesRoute: ExploreCommunitiesRoute,
   ExploreSupportRoute: ExploreSupportRoute,
+  ImpactRoute: ImpactRoute,
+  NotificationsRoute: NotificationsRoute,
   OnboardingRoute: OnboardingRoute,
+  OpportunitiesRoute: OpportunitiesRoute,
+  OrganizationRoute: OrganizationRoute,
   StudentRoute: StudentRoute,
+  SupporterRoute: SupporterRoute,
+  CommunityIdRoute: CommunityIdRoute,
+  SupportIdRoute: SupportIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
