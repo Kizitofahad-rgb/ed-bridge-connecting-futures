@@ -13,6 +13,7 @@ import { Route as StudentRouteImport } from './routes/student'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as ExploreSupportRouteImport } from './routes/explore-support'
 import { Route as ExploreCommunitiesRouteImport } from './routes/explore-communities'
+import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -37,6 +38,11 @@ const ExploreCommunitiesRoute = ExploreCommunitiesRouteImport.update({
   path: '/explore-communities',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -57,6 +63,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/discover': typeof DiscoverRoute
   '/explore-communities': typeof ExploreCommunitiesRoute
   '/explore-support': typeof ExploreSupportRoute
   '/onboarding': typeof OnboardingRoute
@@ -66,6 +73,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/discover': typeof DiscoverRoute
   '/explore-communities': typeof ExploreCommunitiesRoute
   '/explore-support': typeof ExploreSupportRoute
   '/onboarding': typeof OnboardingRoute
@@ -76,6 +84,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/discover': typeof DiscoverRoute
   '/explore-communities': typeof ExploreCommunitiesRoute
   '/explore-support': typeof ExploreSupportRoute
   '/onboarding': typeof OnboardingRoute
@@ -87,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/discover'
     | '/explore-communities'
     | '/explore-support'
     | '/onboarding'
@@ -96,6 +106,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/discover'
     | '/explore-communities'
     | '/explore-support'
     | '/onboarding'
@@ -105,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/discover'
     | '/explore-communities'
     | '/explore-support'
     | '/onboarding'
@@ -115,6 +127,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
+  DiscoverRoute: typeof DiscoverRoute
   ExploreCommunitiesRoute: typeof ExploreCommunitiesRoute
   ExploreSupportRoute: typeof ExploreSupportRoute
   OnboardingRoute: typeof OnboardingRoute
@@ -151,6 +164,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ExploreCommunitiesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -179,6 +199,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
+  DiscoverRoute: DiscoverRoute,
   ExploreCommunitiesRoute: ExploreCommunitiesRoute,
   ExploreSupportRoute: ExploreSupportRoute,
   OnboardingRoute: OnboardingRoute,
