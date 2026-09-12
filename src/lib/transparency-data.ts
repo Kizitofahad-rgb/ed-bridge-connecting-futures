@@ -86,20 +86,74 @@ export const donations: DonationRecord[] = seedDonations.map(
     anonymous: anon,
     status: d < 5 ? "in_transit" : "delivered",
     receiptUrl: "#",
-  })
+  }),
 );
 
 // ----- Milestones / activity feed combined into heatmap -----
 export const milestones: MilestoneEvent[] = [
-  { id: "m1", date: daysAgo(3), studentName: "Sofía Ramírez", title: "Passed clinical rotation exam", type: "milestone" },
-  { id: "m2", date: daysAgo(11), studentName: "Amara Okafor", title: "Submitted final-year project draft", type: "update" },
-  { id: "m3", date: daysAgo(18), studentName: "Layla Hassan", title: "Year 4 tuition receipt uploaded", type: "receipt" },
-  { id: "m4", date: daysAgo(34), studentName: "Rohan Mehta", title: "Solar prototype v2 tested", type: "milestone" },
-  { id: "m5", date: daysAgo(51), studentName: "Linh Tran", title: "Accepted robotics internship offer", type: "milestone" },
-  { id: "m6", date: daysAgo(80), studentName: "Daniel Mwangi", title: "Top of class — term report", type: "update" },
-  { id: "m7", date: daysAgo(140), studentName: "Sofía Ramírez", title: "Completed nursing year 2", type: "graduation" },
-  { id: "m8", date: daysAgo(210), studentName: "Amara Okafor", title: "Passed semester 6 with distinction", type: "milestone" },
-  { id: "m9", date: daysAgo(290), studentName: "Layla Hassan", title: "Selected for hospital rotation", type: "milestone" },
+  {
+    id: "m1",
+    date: daysAgo(3),
+    studentName: "Sofía Ramírez",
+    title: "Passed clinical rotation exam",
+    type: "milestone",
+  },
+  {
+    id: "m2",
+    date: daysAgo(11),
+    studentName: "Amara Okafor",
+    title: "Submitted final-year project draft",
+    type: "update",
+  },
+  {
+    id: "m3",
+    date: daysAgo(18),
+    studentName: "Layla Hassan",
+    title: "Year 4 tuition receipt uploaded",
+    type: "receipt",
+  },
+  {
+    id: "m4",
+    date: daysAgo(34),
+    studentName: "Rohan Mehta",
+    title: "Solar prototype v2 tested",
+    type: "milestone",
+  },
+  {
+    id: "m5",
+    date: daysAgo(51),
+    studentName: "Linh Tran",
+    title: "Accepted robotics internship offer",
+    type: "milestone",
+  },
+  {
+    id: "m6",
+    date: daysAgo(80),
+    studentName: "Daniel Mwangi",
+    title: "Top of class — term report",
+    type: "update",
+  },
+  {
+    id: "m7",
+    date: daysAgo(140),
+    studentName: "Sofía Ramírez",
+    title: "Completed nursing year 2",
+    type: "graduation",
+  },
+  {
+    id: "m8",
+    date: daysAgo(210),
+    studentName: "Amara Okafor",
+    title: "Passed semester 6 with distinction",
+    type: "milestone",
+  },
+  {
+    id: "m9",
+    date: daysAgo(290),
+    studentName: "Layla Hassan",
+    title: "Selected for hospital rotation",
+    type: "milestone",
+  },
 ];
 
 // ----- Heatmap helper: build daily activity counts for the past 365 days -----
@@ -177,9 +231,18 @@ export function buildCauseBreakdown() {
 
 function causeCategory(c: string): string {
   const x = c.toLowerCase();
-  if (x.includes("tuition") || x.includes("school fees") || x.includes("registration")) return "Tuition & fees";
-  if (x.includes("book") || x.includes("textbook") || x.includes("stethoscope") || x.includes("laptop") || x.includes("software")) return "Materials & equipment";
-  if (x.includes("research") || x.includes("lab") || x.includes("travel") || x.includes("field")) return "Research & travel";
+  if (x.includes("tuition") || x.includes("school fees") || x.includes("registration"))
+    return "Tuition & fees";
+  if (
+    x.includes("book") ||
+    x.includes("textbook") ||
+    x.includes("stethoscope") ||
+    x.includes("laptop") ||
+    x.includes("software")
+  )
+    return "Materials & equipment";
+  if (x.includes("research") || x.includes("lab") || x.includes("travel") || x.includes("field"))
+    return "Research & travel";
   return "Living & other";
 }
 

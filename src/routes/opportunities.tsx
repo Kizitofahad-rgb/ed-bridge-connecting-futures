@@ -7,9 +7,16 @@ export const Route = createFileRoute("/opportunities")({
   head: () => ({
     meta: [
       { title: "Opportunities — Ed-Bridge Makerere" },
-      { name: "description", content: "Internships, scholarships, mentorship cohorts and competitions matched to your Makerere communities." },
+      {
+        name: "description",
+        content:
+          "Internships, scholarships, mentorship cohorts and competitions matched to your Makerere communities.",
+      },
       { property: "og:title", content: "Opportunities — Ed-Bridge Makerere" },
-      { property: "og:description", content: "Opportunities matched to your college, course and communities." },
+      {
+        property: "og:description",
+        content: "Opportunities matched to your college, course and communities.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

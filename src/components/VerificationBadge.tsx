@@ -14,21 +14,37 @@ export function VerificationBadge({
 }) {
   if (variant === "pending") {
     return (
-      <span className={cn("inline-flex items-center gap-1 rounded-full bg-warning/15 px-2.5 py-1 text-xs font-medium text-foreground", className)}>
+      <span
+        className={cn(
+          "inline-flex items-center gap-1 rounded-full bg-warning/15 px-2.5 py-1 text-xs font-medium text-foreground",
+          className,
+        )}
+      >
         <Clock className="h-3.5 w-3.5" /> Pending verification
       </span>
     );
   }
   if (variant === "trust") {
     return (
-      <span className={cn("inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary", className)}>
+      <span
+        className={cn(
+          "inline-flex items-center gap-1 rounded-full bg-primary/10 px-2.5 py-1 text-xs font-medium text-primary",
+          className,
+        )}
+      >
         <ShieldCheck className="h-3.5 w-3.5" /> Trust score {score ?? "—"}/100
       </span>
     );
   }
   return (
-    <span className={cn("inline-flex items-center gap-1 rounded-full bg-success/15 px-2.5 py-1 text-xs font-medium text-success", className)}>
-      <BadgeCheck className="h-3.5 w-3.5" /> Verified{typeof score === "number" ? ` · ${score}` : ""}
+    <span
+      className={cn(
+        "inline-flex items-center gap-1 rounded-full bg-success/15 px-2.5 py-1 text-xs font-medium text-success",
+        className,
+      )}
+    >
+      <BadgeCheck className="h-3.5 w-3.5" /> Verified
+      {typeof score === "number" ? ` · ${score}` : ""}
     </span>
   );
 }

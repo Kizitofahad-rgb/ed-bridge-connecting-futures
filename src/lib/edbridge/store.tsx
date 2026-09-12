@@ -1,4 +1,12 @@
-import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+  type ReactNode,
+} from "react";
 import {
   CURRENT_USER_ID,
   communitiesById,
@@ -24,13 +32,21 @@ interface State {
 }
 
 interface Ctx extends State {
-  user: typeof people[number];
+  user: (typeof people)[number];
   setRole: (r: DemoRole) => void;
   completeOnboarding: () => void;
   supportFinancially: (requestId: string, amount: number, privacy: Privacy) => void;
-  offerSupport: (requestId: string, type: Exclude<SupportType, "financial">, privacy: Privacy, note?: string) => void;
+  offerSupport: (
+    requestId: string,
+    type: Exclude<SupportType, "financial">,
+    privacy: Privacy,
+    note?: string,
+  ) => void;
   joinCommunity: (id: string) => void;
-  createRequest: (r: Omit<SupportRequest, "id" | "personId" | "supporters" | "status" | "checks" | "createdAt">) => string;
+  createRequest: (
+    r: Omit<SupportRequest, "id" | "personId" | "supporters" | "status" | "checks" | "createdAt">,
+  ) => string;
+  updateRequestStatus: (requestId: string, status: VerificationState) => void;
   markAllRead: () => void;
   totals: {
     studentsSupported: number;
@@ -109,7 +125,9 @@ export function EdBridgeProvider({ children }: { children: ReactNode }) {
             ? { ...r, amountRaised: (r.amountRaised ?? 0) + amount, supporters: r.supporters + 1 }
             : r,
         ),
-        connections: s.connections.includes(req.personId) ? s.connections : [...s.connections, req.personId],
+        connections: s.connections.includes(req.personId)
+          ? s.connections
+          : [...s.connections, req.personId],
         impact: [
           {
             id: uid(),
@@ -136,8 +154,12 @@ export function EdBridgeProvider({ children }: { children: ReactNode }) {
       const student = peopleById[req.personId];
       return {
         ...s,
-        requests: s.requests.map((r) => (r.id === requestId ? { ...r, supporters: r.supporters + 1 } : r)),
-        connections: s.connections.includes(req.personId) ? s.connections : [...s.connections, req.personId],
+        requests: s.requests.map((r) =>
+          r.id === requestId ? { ...r, supporters: r.supporters + 1 } : r,
+        ),
+        connections: s.connections.includes(req.personId)
+          ? s.connections
+          : [...s.connections, req.personId],
         mentorships:
           type === "mentorship" && !s.mentorships.includes(req.personId)
             ? [...s.mentorships, req.personId]
@@ -212,11 +234,36 @@ export function EdBridgeProvider({ children }: { children: ReactNode }) {
     return id;
   };
 
+  const updateRequestStatus: Ctx["updateRequestStatus"] = (requestId, status) => {
+    update((s) => ({
+      ...s,
+      requests: s.requests.map((r) =>
+        r.id === requestId
+          ? {
+              ...r,
+              status,
+              checks: { ...r.checks, humanReview: status === "verified" },
+            }
+          : r,
+      ),
+      notifications: notify(s, {
+        title: `Verification status updated to ${status}`,
+        body: `Request ${requestId} status has been updated by human review.`,
+        tone: "verification",
+      }),
+    }));
+  };
+
   const value: Ctx = useMemo(() => {
     const totals = {
-      studentsSupported: new Set(state.impact.filter((i) => i.type === "financial" || i.type === "resource").map((i) => i.detail.split(" — ")[0])).size,
+      studentsSupported: new Set(
+        state.impact
+          .filter((i) => i.type === "financial" || i.type === "resource")
+          .map((i) => i.detail.split(" — ")[0]),
+      ).size,
       mentorships: state.impact.filter((i) => i.type === "mentorship").length,
-      referrals: state.impact.filter((i) => i.type === "referral" || i.type === "opportunity").length,
+      referrals: state.impact.filter((i) => i.type === "referral" || i.type === "opportunity")
+        .length,
       resources: state.impact.filter((i) => i.type === "resource").length,
       communities: state.joinedCommunities.length,
       amount: 0,
@@ -231,7 +278,12 @@ export function EdBridgeProvider({ children }: { children: ReactNode }) {
       offerSupport,
       joinCommunity,
       createRequest,
-      markAllRead: () => update((s) => ({ ...s, notifications: s.notifications.map((n) => ({ ...n, read: true })) })),
+      updateRequestStatus,
+      markAllRead: () =>
+        update((s) => ({
+          ...s,
+          notifications: s.notifications.map((n) => ({ ...n, read: true })),
+        })),
       reset: () => update(() => initial),
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

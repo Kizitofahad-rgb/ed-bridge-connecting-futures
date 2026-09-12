@@ -9,7 +9,14 @@ interface Props {
   className?: string;
 }
 
-export function AnimatedCounter({ value, duration = 1600, prefix = "", suffix = "", decimals = 0, className }: Props) {
+export function AnimatedCounter({
+  value,
+  duration = 1600,
+  prefix = "",
+  suffix = "",
+  decimals = 0,
+  className,
+}: Props) {
   const [display, setDisplay] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
@@ -17,32 +24,35 @@ export function AnimatedCounter({ value, duration = 1600, prefix = "", suffix = 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting && !started.current) {
-          started.current = true;
-          const start = performance.now();
-          const tick = (now: number) => {
-            const t = Math.min(1, (now - start) / duration);
-            const eased = 1 - Math.pow(1 - t, 3);
-            setDisplay(value * eased);
-            if (t < 1) requestAnimationFrame(tick);
-          };
-          requestAnimationFrame(tick);
-        }
-      });
-    }, { threshold: 0.3 });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !started.current) {
+            started.current = true;
+            const start = performance.now();
+            const tick = (now: number) => {
+              const t = Math.min(1, (now - start) / duration);
+              const eased = 1 - Math.pow(1 - t, 3);
+              setDisplay(value * eased);
+              if (t < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+          }
+        });
+      },
+      { threshold: 0.3 },
+    );
     io.observe(el);
     return () => io.disconnect();
   }, [value, duration]);
 
-  const formatted = decimals > 0
-    ? display.toFixed(decimals)
-    : Math.round(display).toLocaleString();
+  const formatted = decimals > 0 ? display.toFixed(decimals) : Math.round(display).toLocaleString();
 
   return (
     <span ref={ref} className={className}>
-      {prefix}{formatted}{suffix}
+      {prefix}
+      {formatted}
+      {suffix}
     </span>
   );
 }

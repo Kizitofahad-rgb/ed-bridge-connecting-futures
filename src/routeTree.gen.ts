@@ -9,75 +9,25 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SupporterRouteImport } from './routes/supporter'
-import { Route as StudentRouteImport } from './routes/student'
-import { Route as OrganizationRouteImport } from './routes/organization'
-import { Route as OpportunitiesRouteImport } from './routes/opportunities'
-import { Route as OnboardingRouteImport } from './routes/onboarding'
-import { Route as NotificationsRouteImport } from './routes/notifications'
-import { Route as ImpactRouteImport } from './routes/impact'
-import { Route as ExploreSupportRouteImport } from './routes/explore-support'
-import { Route as ExploreCommunitiesRouteImport } from './routes/explore-communities'
-import { Route as DiscoverRouteImport } from './routes/discover'
-import { Route as AdminRouteImport } from './routes/admin'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as SupportIdRouteImport } from './routes/support.$id'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as AdminRouteImport } from './routes/admin'
+import { Route as DiscoverRouteImport } from './routes/discover'
+import { Route as ExploreCommunitiesRouteImport } from './routes/explore-communities'
+import { Route as ExploreSupportRouteImport } from './routes/explore-support'
+import { Route as ImpactRouteImport } from './routes/impact'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as OpportunitiesRouteImport } from './routes/opportunities'
+import { Route as OrganizationRouteImport } from './routes/organization'
+import { Route as StudentRouteImport } from './routes/student'
+import { Route as SupporterRouteImport } from './routes/supporter'
 import { Route as CommunityIdRouteImport } from './routes/community.$id'
+import { Route as SupportIdRouteImport } from './routes/support.$id'
 
-const SupporterRoute = SupporterRouteImport.update({
-  id: '/supporter',
-  path: '/supporter',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const StudentRoute = StudentRouteImport.update({
-  id: '/student',
-  path: '/student',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OrganizationRoute = OrganizationRouteImport.update({
-  id: '/organization',
-  path: '/organization',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OpportunitiesRoute = OpportunitiesRouteImport.update({
-  id: '/opportunities',
-  path: '/opportunities',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const OnboardingRoute = OnboardingRouteImport.update({
-  id: '/onboarding',
-  path: '/onboarding',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const NotificationsRoute = NotificationsRouteImport.update({
-  id: '/notifications',
-  path: '/notifications',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ImpactRoute = ImpactRouteImport.update({
-  id: '/impact',
-  path: '/impact',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ExploreSupportRoute = ExploreSupportRouteImport.update({
-  id: '/explore-support',
-  path: '/explore-support',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ExploreCommunitiesRoute = ExploreCommunitiesRouteImport.update({
-  id: '/explore-communities',
-  path: '/explore-communities',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DiscoverRoute = DiscoverRouteImport.update({
-  id: '/discover',
-  path: '/discover',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminRoute = AdminRouteImport.update({
-  id: '/admin',
-  path: '/admin',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -85,19 +35,69 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SupportIdRoute = SupportIdRouteImport.update({
-  id: '/support/$id',
-  path: '/support/$id',
+const DiscoverRoute = DiscoverRouteImport.update({
+  id: '/discover',
+  path: '/discover',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreCommunitiesRoute = ExploreCommunitiesRouteImport.update({
+  id: '/explore-communities',
+  path: '/explore-communities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExploreSupportRoute = ExploreSupportRouteImport.update({
+  id: '/explore-support',
+  path: '/explore-support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ImpactRoute = ImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpportunitiesRoute = OpportunitiesRouteImport.update({
+  id: '/opportunities',
+  path: '/opportunities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganizationRoute = OrganizationRouteImport.update({
+  id: '/organization',
+  path: '/organization',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentRoute = StudentRouteImport.update({
+  id: '/student',
+  path: '/student',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupporterRoute = SupporterRouteImport.update({
+  id: '/supporter',
+  path: '/supporter',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommunityIdRoute = CommunityIdRouteImport.update({
   id: '/community/$id',
   path: '/community/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportIdRoute = SupportIdRouteImport.update({
+  id: '/support/$id',
+  path: '/support/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -227,81 +227,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/supporter': {
-      id: '/supporter'
-      path: '/supporter'
-      fullPath: '/supporter'
-      preLoaderRoute: typeof SupporterRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/student': {
-      id: '/student'
-      path: '/student'
-      fullPath: '/student'
-      preLoaderRoute: typeof StudentRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/organization': {
-      id: '/organization'
-      path: '/organization'
-      fullPath: '/organization'
-      preLoaderRoute: typeof OrganizationRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/opportunities': {
-      id: '/opportunities'
-      path: '/opportunities'
-      fullPath: '/opportunities'
-      preLoaderRoute: typeof OpportunitiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/onboarding': {
-      id: '/onboarding'
-      path: '/onboarding'
-      fullPath: '/onboarding'
-      preLoaderRoute: typeof OnboardingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/notifications': {
-      id: '/notifications'
-      path: '/notifications'
-      fullPath: '/notifications'
-      preLoaderRoute: typeof NotificationsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/impact': {
-      id: '/impact'
-      path: '/impact'
-      fullPath: '/impact'
-      preLoaderRoute: typeof ImpactRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/explore-support': {
-      id: '/explore-support'
-      path: '/explore-support'
-      fullPath: '/explore-support'
-      preLoaderRoute: typeof ExploreSupportRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/explore-communities': {
-      id: '/explore-communities'
-      path: '/explore-communities'
-      fullPath: '/explore-communities'
-      preLoaderRoute: typeof ExploreCommunitiesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/discover': {
-      id: '/discover'
-      path: '/discover'
-      fullPath: '/discover'
-      preLoaderRoute: typeof DiscoverRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin': {
-      id: '/admin'
-      path: '/admin'
-      fullPath: '/admin'
-      preLoaderRoute: typeof AdminRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -311,18 +241,81 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/support/$id': {
-      id: '/support/$id'
-      path: '/support/$id'
-      fullPath: '/support/$id'
-      preLoaderRoute: typeof SupportIdRouteImport
+    '/discover': {
+      id: '/discover'
+      path: '/discover'
+      fullPath: '/discover'
+      preLoaderRoute: typeof DiscoverRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore-communities': {
+      id: '/explore-communities'
+      path: '/explore-communities'
+      fullPath: '/explore-communities'
+      preLoaderRoute: typeof ExploreCommunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/explore-support': {
+      id: '/explore-support'
+      path: '/explore-support'
+      fullPath: '/explore-support'
+      preLoaderRoute: typeof ExploreSupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/impact': {
+      id: '/impact'
+      path: '/impact'
+      fullPath: '/impact'
+      preLoaderRoute: typeof ImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/opportunities': {
+      id: '/opportunities'
+      path: '/opportunities'
+      fullPath: '/opportunities'
+      preLoaderRoute: typeof OpportunitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organization': {
+      id: '/organization'
+      path: '/organization'
+      fullPath: '/organization'
+      preLoaderRoute: typeof OrganizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student': {
+      id: '/student'
+      path: '/student'
+      fullPath: '/student'
+      preLoaderRoute: typeof StudentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/supporter': {
+      id: '/supporter'
+      path: '/supporter'
+      fullPath: '/supporter'
+      preLoaderRoute: typeof SupporterRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/community/$id': {
@@ -330,6 +323,13 @@ declare module '@tanstack/react-router' {
       path: '/community/$id'
       fullPath: '/community/$id'
       preLoaderRoute: typeof CommunityIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support/$id': {
+      id: '/support/$id'
+      path: '/support/$id'
+      fullPath: '/support/$id'
+      preLoaderRoute: typeof SupportIdRouteImport
       parentRoute: typeof rootRouteImport
     }
   }

@@ -25,7 +25,11 @@ export function NetworkGraph({ centerLabel = "You" }: { centerLabel?: string }) 
 
   return (
     <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border/70 bg-card p-2 shadow-[var(--shadow-card)] sm:aspect-[16/9]">
-      <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="absolute inset-0 h-full w-full">
+      <svg
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        className="absolute inset-0 h-full w-full"
+      >
         {nodes.map((n) => (
           <line
             key={n.id}
@@ -57,7 +61,9 @@ export function NetworkGraph({ centerLabel = "You" }: { centerLabel?: string }) 
             {n.label.charAt(0)}
           </div>
           <p className="mt-1 hidden text-[11px] font-medium leading-tight sm:block">{n.label}</p>
-          <p className="hidden text-[10px] leading-tight text-muted-foreground md:block">{n.reason}</p>
+          <p className="hidden text-[10px] leading-tight text-muted-foreground md:block">
+            {n.reason}
+          </p>
         </div>
       ))}
     </div>
