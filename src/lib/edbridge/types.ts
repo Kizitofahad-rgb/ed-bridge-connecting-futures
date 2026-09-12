@@ -1,4 +1,5 @@
-export type CollegeCode = "CoCIS" | "CEDAT" | "CHUSS" | "CAES" | "CONAS" | "CEES" | "COBAMS" | "CHS";
+export type CollegeCode =
+  "CoCIS" | "CEDAT" | "CHUSS" | "CAES" | "CONAS" | "CEES" | "COBAMS" | "CHS";
 
 export type CommunityKind = "college" | "course" | "school-alumni" | "organization" | "club";
 
@@ -35,7 +36,8 @@ export interface Person {
   bio: string;
 }
 
-export type SupportType = "financial" | "mentorship" | "resource" | "opportunity" | "referral" | "amplification";
+export type SupportType =
+  "financial" | "mentorship" | "resource" | "opportunity" | "referral" | "amplification";
 
 export type RequestCategory =
   | "Tuition"
@@ -71,7 +73,14 @@ export interface Opportunity {
   id: string;
   title: string;
   org: string;
-  kind: "Internship" | "Scholarship" | "Mentorship" | "Competition" | "Part-time" | "Training" | "Hackathon";
+  kind:
+    | "Internship"
+    | "Scholarship"
+    | "Mentorship"
+    | "Competition"
+    | "Part-time"
+    | "Training"
+    | "Hackathon";
   location: string;
   closesInDays: number;
   summary: string;

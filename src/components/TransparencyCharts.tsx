@@ -38,7 +38,9 @@ export function FundingTrendChart() {
       <div className="flex items-end justify-between">
         <div>
           <h3 className="text-base font-semibold">Funding delivered over time</h3>
-          <p className="text-xs text-muted-foreground">Monthly donations vs. amount delivered to students</p>
+          <p className="text-xs text-muted-foreground">
+            Monthly donations vs. amount delivered to students
+          </p>
         </div>
         <span className="text-xs text-muted-foreground">12 months</span>
       </div>
@@ -56,11 +58,40 @@ export function FundingTrendChart() {
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.92 0.01 240)" vertical={false} />
-            <XAxis dataKey="month" tickLine={false} axisLine={false} fontSize={11} stroke="oklch(0.55 0.02 240)" />
-            <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="oklch(0.55 0.02 240)" tickFormatter={(v) => `$${v}`} />
-            <Tooltip contentStyle={tooltipStyle} formatter={(v: number) => `$${v.toLocaleString()}`} />
-            <Area type="monotone" dataKey="donated" stroke="oklch(0.52 0.16 250)" strokeWidth={2} fill="url(#g1)" name="Donated" />
-            <Area type="monotone" dataKey="delivered" stroke="oklch(0.68 0.17 220)" strokeWidth={2} fill="url(#g2)" name="Delivered" />
+            <XAxis
+              dataKey="month"
+              tickLine={false}
+              axisLine={false}
+              fontSize={11}
+              stroke="oklch(0.55 0.02 240)"
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              fontSize={11}
+              stroke="oklch(0.55 0.02 240)"
+              tickFormatter={(v) => `$${v}`}
+            />
+            <Tooltip
+              contentStyle={tooltipStyle}
+              formatter={(v: number) => `$${v.toLocaleString()}`}
+            />
+            <Area
+              type="monotone"
+              dataKey="donated"
+              stroke="oklch(0.52 0.16 250)"
+              strokeWidth={2}
+              fill="url(#g1)"
+              name="Donated"
+            />
+            <Area
+              type="monotone"
+              dataKey="delivered"
+              stroke="oklch(0.68 0.17 220)"
+              strokeWidth={2}
+              fill="url(#g2)"
+              name="Delivered"
+            />
           </AreaChart>
         </ResponsiveContainer>
       </div>
@@ -79,12 +110,22 @@ export function CauseBreakdownChart() {
         <div className="h-40">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
-              <Pie data={data} dataKey="value" innerRadius={48} outerRadius={70} paddingAngle={2} stroke="none">
+              <Pie
+                data={data}
+                dataKey="value"
+                innerRadius={48}
+                outerRadius={70}
+                paddingAngle={2}
+                stroke="none"
+              >
                 {data.map((_, i) => (
                   <Cell key={i} fill={chartColors[i % chartColors.length]} />
                 ))}
               </Pie>
-              <Tooltip contentStyle={tooltipStyle} formatter={(v: number) => `$${v.toLocaleString()}`} />
+              <Tooltip
+                contentStyle={tooltipStyle}
+                formatter={(v: number) => `$${v.toLocaleString()}`}
+              />
             </PieChart>
           </ResponsiveContainer>
         </div>
@@ -94,10 +135,15 @@ export function CauseBreakdownChart() {
             return (
               <li key={d.name} className="flex items-center justify-between gap-3">
                 <span className="flex items-center gap-2">
-                  <span className="h-3 w-3 rounded-full" style={{ background: chartColors[i % chartColors.length] }} />
+                  <span
+                    className="h-3 w-3 rounded-full"
+                    style={{ background: chartColors[i % chartColors.length] }}
+                  />
                   <span className="text-foreground">{d.name}</span>
                 </span>
-                <span className="text-muted-foreground">${d.value.toLocaleString()} · {pct}%</span>
+                <span className="text-muted-foreground">
+                  ${d.value.toLocaleString()} · {pct}%
+                </span>
               </li>
             );
           })}
@@ -117,14 +163,42 @@ export function MilestoneProgressChart() {
   return (
     <div className="rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-card)]">
       <h3 className="text-base font-semibold">Educational milestones funded</h3>
-      <p className="text-xs text-muted-foreground">Across the {milestoneProgress[0].total} students you support</p>
+      <p className="text-xs text-muted-foreground">
+        Across the {milestoneProgress[0].total} students you support
+      </p>
       <div className="mt-4 h-64 w-full">
         <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data} layout="vertical" margin={{ top: 4, right: 16, left: 0, bottom: 0 }}>
+          <BarChart
+            data={data}
+            layout="vertical"
+            margin={{ top: 4, right: 16, left: 0, bottom: 0 }}
+          >
             <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.92 0.01 240)" horizontal={false} />
-            <XAxis type="number" domain={[0, 100]} tickFormatter={(v) => `${v}%`} tickLine={false} axisLine={false} fontSize={11} stroke="oklch(0.55 0.02 240)" />
-            <YAxis dataKey="label" type="category" width={170} tickLine={false} axisLine={false} fontSize={11} stroke="oklch(0.55 0.02 240)" />
-            <Tooltip contentStyle={tooltipStyle} formatter={(_v, _n, p: any) => [`${p.payload.completed}/${p.payload.total} students`, "Completed"]} />
+            <XAxis
+              type="number"
+              domain={[0, 100]}
+              tickFormatter={(v) => `${v}%`}
+              tickLine={false}
+              axisLine={false}
+              fontSize={11}
+              stroke="oklch(0.55 0.02 240)"
+            />
+            <YAxis
+              dataKey="label"
+              type="category"
+              width={170}
+              tickLine={false}
+              axisLine={false}
+              fontSize={11}
+              stroke="oklch(0.55 0.02 240)"
+            />
+            <Tooltip
+              contentStyle={tooltipStyle}
+              formatter={(_v, _n, p: { payload: { completed: number; total: number } }) => [
+                `${p.payload.completed}/${p.payload.total} students`,
+                "Completed",
+              ]}
+            />
             <Bar dataKey="pct" radius={[6, 6, 6, 6]} fill="oklch(0.52 0.16 250)" />
           </BarChart>
         </ResponsiveContainer>
@@ -146,9 +220,24 @@ export function FundingProgressChart({
         <ResponsiveContainer width="100%" height="100%">
           <BarChart data={data} margin={{ top: 4, right: 10, left: 0, bottom: 0 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="oklch(0.92 0.01 240)" vertical={false} />
-            <XAxis dataKey="name" tickLine={false} axisLine={false} fontSize={11} stroke="oklch(0.55 0.02 240)" />
-            <YAxis tickLine={false} axisLine={false} fontSize={11} stroke="oklch(0.55 0.02 240)" tickFormatter={(v) => `$${v}`} />
-            <Tooltip contentStyle={tooltipStyle} formatter={(v: number) => `$${v.toLocaleString()}`} />
+            <XAxis
+              dataKey="name"
+              tickLine={false}
+              axisLine={false}
+              fontSize={11}
+              stroke="oklch(0.55 0.02 240)"
+            />
+            <YAxis
+              tickLine={false}
+              axisLine={false}
+              fontSize={11}
+              stroke="oklch(0.55 0.02 240)"
+              tickFormatter={(v) => `$${v}`}
+            />
+            <Tooltip
+              contentStyle={tooltipStyle}
+              formatter={(v: number) => `$${v.toLocaleString()}`}
+            />
             <Legend wrapperStyle={{ fontSize: 11 }} />
             <Bar dataKey="target" fill="oklch(0.92 0.01 240)" radius={[6, 6, 0, 0]} name="Target" />
             <Bar dataKey="raised" fill="oklch(0.52 0.16 250)" radius={[6, 6, 0, 0]} name="Raised" />

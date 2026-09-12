@@ -8,9 +8,15 @@ export const Route = createFileRoute("/notifications")({
   head: () => ({
     meta: [
       { title: "Notifications — Ed-Bridge Makerere" },
-      { name: "description", content: "Mentorship matches, verified requests, community activity and impact updates." },
+      {
+        name: "description",
+        content: "Mentorship matches, verified requests, community activity and impact updates.",
+      },
       { property: "og:title", content: "Notifications — Ed-Bridge Makerere" },
-      { property: "og:description", content: "Stay on top of matches, verifications and impact updates." },
+      {
+        property: "og:description",
+        content: "Stay on top of matches, verifications and impact updates.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -23,11 +29,19 @@ function Notifications() {
   return (
     <AppShell>
       <div className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
-        <PageHeader eyebrow="Activity" title="Notifications" subtitle="Everything happening across your circle and communities." />
-        <Button variant="outline" size="sm" onClick={markAllRead} className="mb-6">Mark all as read</Button>
+        <PageHeader
+          eyebrow="Activity"
+          title="Notifications"
+          subtitle="Everything happening across your circle and communities."
+        />
+        <Button variant="outline" size="sm" onClick={markAllRead} className="mb-6">
+          Mark all as read
+        </Button>
         <ul className="space-y-3">
           {notifications.length === 0 && (
-            <li className="rounded-2xl border border-dashed border-border p-8 text-center text-sm text-muted-foreground">Nothing yet.</li>
+            <li className="rounded-2xl border border-dashed border-border p-8 text-center text-sm text-muted-foreground">
+              Nothing yet.
+            </li>
           )}
           {notifications.map((n) => (
             <li

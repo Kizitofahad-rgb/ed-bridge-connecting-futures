@@ -16,9 +16,16 @@ export const Route = createFileRoute("/student")({
   head: () => ({
     meta: [
       { title: "Student Dashboard — Ed-Bridge Makerere" },
-      { name: "description", content: "Your Ed-Bridge circle, recommended support, opportunities and requests at Makerere University." },
+      {
+        name: "description",
+        content:
+          "Your Ed-Bridge circle, recommended support, opportunities and requests at Makerere University.",
+      },
       { property: "og:title", content: "Student Dashboard — Ed-Bridge Makerere" },
-      { property: "og:description", content: "Your circle, verified requests and opportunities in one place." },
+      {
+        property: "og:description",
+        content: "Your circle, verified requests and opportunities in one place.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -73,47 +80,87 @@ function StudentDashboard() {
 
         <section className="mb-10 rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-card)]">
           <h2 className="text-xl font-semibold">Your Ed-Bridge circle</h2>
-          <p className="mt-1 text-sm text-muted-foreground">Connections come from your college, course, secondary school and communities.</p>
-          <div className="mt-4"><NetworkGraph /></div>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Connections come from your college, course, secondary school and communities.
+          </p>
+          <div className="mt-4">
+            <NetworkGraph />
+          </div>
           <Button asChild variant="outline" size="sm" className="mt-4">
-            <Link to="/discover">Discover people <ArrowRight className="h-4 w-4" /></Link>
+            <Link to="/discover">
+              Discover people <ArrowRight className="h-4 w-4" />
+            </Link>
           </Button>
         </section>
 
         <section className="mb-10 flex flex-col items-start justify-between gap-4 rounded-3xl border border-primary/20 bg-primary/5 p-6 sm:flex-row sm:items-center">
           <div className="flex items-start gap-3">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary"><Sparkles className="h-5 w-5" /></span>
+            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary">
+              <Sparkles className="h-5 w-5" />
+            </span>
             <div>
               <h2 className="text-base font-semibold">New to Ed-Bridge?</h2>
-              <p className="text-sm text-muted-foreground">Set up your profile, communities and support preferences in four steps.</p>
+              <p className="text-sm text-muted-foreground">
+                Set up your profile, communities and support preferences in four steps.
+              </p>
             </div>
           </div>
           <Button asChild size="sm">
-            <Link to="/onboarding">Run onboarding <ArrowRight className="h-4 w-4" /></Link>
+            <Link to="/onboarding">
+              Run onboarding <ArrowRight className="h-4 w-4" />
+            </Link>
           </Button>
         </section>
 
         <div className="grid gap-8 lg:grid-cols-[1.1fr_1fr]">
           <section className="rounded-3xl border border-border/70 bg-card p-7 shadow-[var(--shadow-card)]">
             <h2 className="text-xl font-semibold">Create a support request</h2>
-            <p className="mt-1 text-sm text-muted-foreground">Be specific — clarity builds trust. Every request is reviewed before it goes live.</p>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Be specific — clarity builds trust. Every request is reviewed before it goes live.
+            </p>
             <form onSubmit={onSubmit} className="mt-6 space-y-5">
               <div className="space-y-2">
                 <Label htmlFor="title">What do you need?</Label>
-                <Input id="title" required value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Remaining tuition balance" />
+                <Input
+                  id="title"
+                  required
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="e.g. Remaining tuition balance"
+                />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="why">Why does it matter?</Label>
-                <Textarea id="why" required rows={5} value={why} onChange={(e) => setWhy(e.target.value)} placeholder="Share your situation and what this unlocks." />
+                <Textarea
+                  id="why"
+                  required
+                  rows={5}
+                  value={why}
+                  onChange={(e) => setWhy(e.target.value)}
+                  placeholder="Share your situation and what this unlocks."
+                />
               </div>
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="space-y-2">
                   <Label htmlFor="amt">Amount needed (UGX)</Label>
-                  <Input id="amt" type="number" min={0} value={amount} onChange={(e) => setAmount(e.target.value)} placeholder="350000" />
+                  <Input
+                    id="amt"
+                    type="number"
+                    min={0}
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="350000"
+                  />
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="dl">Days remaining</Label>
-                  <Input id="dl" type="number" min={1} value={days} onChange={(e) => setDays(e.target.value)} />
+                  <Input
+                    id="dl"
+                    type="number"
+                    min={1}
+                    value={days}
+                    onChange={(e) => setDays(e.target.value)}
+                  />
                 </div>
               </div>
               <div className="space-y-2">
@@ -124,7 +171,9 @@ function StudentDashboard() {
                   <input type="file" className="hidden" />
                 </label>
               </div>
-              <Button type="submit" size="lg" className="w-full">Submit for verification</Button>
+              <Button type="submit" size="lg" className="w-full">
+                Submit for verification
+              </Button>
             </form>
           </section>
 
@@ -137,7 +186,10 @@ function StudentDashboard() {
                 </p>
               )}
               {mine.map((r) => (
-                <div key={r.id} className="rounded-2xl border border-border/70 bg-card p-5 shadow-[var(--shadow-card)]">
+                <div
+                  key={r.id}
+                  className="rounded-2xl border border-border/70 bg-card p-5 shadow-[var(--shadow-card)]"
+                >
                   <div className="flex items-start justify-between gap-3">
                     <h3 className="font-semibold leading-tight">{r.title}</h3>
                     <StatusBadge status={r.status} />
@@ -145,7 +197,9 @@ function StudentDashboard() {
                   {r.amountNeeded ? (
                     <Progress raised={r.amountRaised ?? 0} needed={r.amountNeeded} />
                   ) : (
-                    <p className="mt-3 text-sm text-muted-foreground">{r.resourceNeeded ?? r.need}</p>
+                    <p className="mt-3 text-sm text-muted-foreground">
+                      {r.resourceNeeded ?? r.need}
+                    </p>
                   )}
                   <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
                     <span>{r.supporters} supporters</span>
@@ -165,7 +219,8 @@ function StudentDashboard() {
         </div>
 
         <p className="mt-10 flex items-center gap-2 text-xs text-muted-foreground">
-          <BadgeCheck className="h-4 w-4 text-success" /> Fictional Makerere data. Amounts such as {ugx(350000)} are illustrative only.
+          <BadgeCheck className="h-4 w-4 text-success" /> Fictional Makerere data. Amounts such as{" "}
+          {ugx(350000)} are illustrative only.
         </p>
       </div>
     </AppShell>

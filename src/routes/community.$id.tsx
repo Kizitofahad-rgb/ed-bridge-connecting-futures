@@ -10,9 +10,16 @@ export const Route = createFileRoute("/community/$id")({
   head: () => ({
     meta: [
       { title: "Community — Ed-Bridge Makerere" },
-      { name: "description", content: "Members, support activity, mentorship and opportunities inside a Makerere Ed-Bridge community." },
+      {
+        name: "description",
+        content:
+          "Members, support activity, mentorship and opportunities inside a Makerere Ed-Bridge community.",
+      },
       { property: "og:title", content: "Community — Ed-Bridge Makerere" },
-      { property: "og:description", content: "Communities are ranked by students helped, never by money." },
+      {
+        property: "og:description",
+        content: "Communities are ranked by students helped, never by money.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -30,7 +37,9 @@ function CommunityDetail() {
       <AppShell>
         <div className="mx-auto max-w-3xl px-4 py-20 text-center sm:px-6">
           <h1 className="text-2xl font-semibold">Community not found</h1>
-          <Button asChild className="mt-6"><Link to="/explore-communities">Browse communities</Link></Button>
+          <Button asChild className="mt-6">
+            <Link to="/explore-communities">Browse communities</Link>
+          </Button>
         </div>
       </AppShell>
     );
@@ -38,13 +47,19 @@ function CommunityDetail() {
 
   const joined = joinedCommunities.includes(community.id);
   const members = Object.values(peopleById).filter((p) => p.communities.includes(community.id));
-  const communityRequests = requests.filter((r) => peopleById[r.personId]?.communities.includes(community.id));
+  const communityRequests = requests.filter((r) =>
+    peopleById[r.personId]?.communities.includes(community.id),
+  );
   const activity = communityActivity.filter((a) => a.community === community.id);
 
   return (
     <AppShell>
       <div className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
-        <PageHeader eyebrow={community.kind.replace("-", " ")} title={community.short} subtitle={community.tagline} />
+        <PageHeader
+          eyebrow={community.kind.replace("-", " ")}
+          title={community.short}
+          subtitle={community.tagline}
+        />
 
         <div className="mb-6 flex flex-wrap gap-3">
           <Button
@@ -56,7 +71,9 @@ function CommunityDetail() {
           >
             {joined ? "You are a member" : "Join this community"}
           </Button>
-          <Button variant="outline" asChild><Link to="/explore-communities">All communities</Link></Button>
+          <Button variant="outline" asChild>
+            <Link to="/explore-communities">All communities</Link>
+          </Button>
         </div>
 
         <div className="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -74,7 +91,9 @@ function CommunityDetail() {
           <section className="mb-10">
             <h2 className="mb-4 text-xl font-semibold">Requests from this community</h2>
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-              {communityRequests.map((r) => <RequestCard key={r.id} request={r} />)}
+              {communityRequests.map((r) => (
+                <RequestCard key={r.id} request={r} />
+              ))}
             </div>
           </section>
         )}
@@ -83,7 +102,9 @@ function CommunityDetail() {
           <div className="rounded-3xl border border-border/70 bg-card p-6 shadow-[var(--shadow-card)]">
             <h2 className="text-lg font-semibold">Recent activity</h2>
             <ul className="mt-4 space-y-4">
-              {activity.length === 0 && <li className="text-sm text-muted-foreground">No recent activity logged.</li>}
+              {activity.length === 0 && (
+                <li className="text-sm text-muted-foreground">No recent activity logged.</li>
+              )}
               {activity.map((a) => (
                 <li key={a.id}>
                   <p className="text-sm font-medium">{a.label}</p>

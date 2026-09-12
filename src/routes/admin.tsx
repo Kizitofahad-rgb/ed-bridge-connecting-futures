@@ -13,9 +13,16 @@ export const Route = createFileRoute("/admin")({
   head: () => ({
     meta: [
       { title: "Verification Queue — Ed-Bridge Makerere" },
-      { name: "description", content: "Review Makerere student requests, confirm verification checks and record decisions." },
+      {
+        name: "description",
+        content:
+          "Review Makerere student requests, confirm verification checks and record decisions.",
+      },
       { property: "og:title", content: "Verification Queue — Ed-Bridge Makerere" },
-      { property: "og:description", content: "Pending review, verified, needs more information, rejected." },
+      {
+        property: "og:description",
+        content: "Pending review, verified, needs more information, rejected.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -30,11 +37,9 @@ const decisions: { id: VerificationState; label: string }[] = [
 ];
 
 function Admin() {
-  const { requests } = useEdBridge();
-  const [overrides, setOverrides] = useState<Record<string, VerificationState>>({});
+  const { requests, updateRequestStatus } = useEdBridge();
 
-  const statusOf = (id: string, fallback: VerificationState) => overrides[id] ?? fallback;
-  const counts = (s: VerificationState) => requests.filter((r) => statusOf(r.id, r.status) === s).length;
+  const counts = (s: VerificationState) => requests.filter((r) => r.status === s).length;
 
   return (
     <AppShell>
@@ -55,18 +60,24 @@ function Admin() {
         <div className="space-y-4">
           {requests.map((r) => {
             const person = peopleById[r.personId];
-            const status = statusOf(r.id, r.status);
             return (
-              <article key={r.id} className="rounded-2xl border border-border/70 bg-card p-6 shadow-[var(--shadow-card)]">
+              <article
+                key={r.id}
+                className="rounded-2xl border border-border/70 bg-card p-6 shadow-[var(--shadow-card)]"
+              >
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <div className="flex items-center gap-2">
-                      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary"><ShieldCheck className="h-4 w-4" /></span>
+                      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <ShieldCheck className="h-4 w-4" />
+                      </span>
                       <h3 className="text-lg font-semibold">{person?.name ?? "Student"}</h3>
                     </div>
-                    <p className="mt-1 text-sm text-muted-foreground">{r.title} · {r.category}</p>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {r.title} · {r.category}
+                    </p>
                   </div>
-                  <StatusBadge status={status} />
+                  <StatusBadge status={r.status} />
                 </div>
 
                 <div className="mt-5 grid gap-6 lg:grid-cols-2">
@@ -79,10 +90,12 @@ function Admin() {
                     <Button
                       key={d.id}
                       size="sm"
-                      variant={status === d.id ? "default" : "outline"}
+                      variant={r.status === d.id ? "default" : "outline"}
                       onClick={() => {
-                        setOverrides((o) => ({ ...o, [r.id]: d.id }));
-                        toast.success(`${person?.name ?? "Request"} marked as ${d.label.toLowerCase()}`);
+                        updateRequestStatus(r.id, d.id);
+                        toast.success(
+                          `${person?.name ?? "Request"} marked as ${d.label.toLowerCase()}`,
+                        );
                       }}
                     >
                       {d.label}

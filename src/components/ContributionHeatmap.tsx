@@ -9,7 +9,13 @@ interface Props {
 // 7 rows (days) × ~53 cols (weeks). Color scale 0..4 keyed to event count.
 export function ContributionHeatmap({ className }: Props) {
   const days = useMemo(() => buildHeatmap(), []);
-  const [hover, setHover] = useState<{ date: string; count: number; amount: number; x: number; y: number } | null>(null);
+  const [hover, setHover] = useState<{
+    date: string;
+    count: number;
+    amount: number;
+    x: number;
+    y: number;
+  } | null>(null);
 
   // Pad the start so the first column begins on Sunday (0).
   const first = new Date(days[0].date + "T00:00:00");
@@ -52,7 +58,8 @@ export function ContributionHeatmap({ className }: Props) {
         <div>
           <h3 className="text-base font-semibold">Activity over the last year</h3>
           <p className="text-xs text-muted-foreground">
-            {total} contributions · ${totalAmount.toLocaleString()} delivered · {days.filter((d) => d.count > 0).length} active days
+            {total} contributions · ${totalAmount.toLocaleString()} delivered ·{" "}
+            {days.filter((d) => d.count > 0).length} active days
           </p>
         </div>
         <div className="flex items-center gap-2 text-[11px] text-muted-foreground">
@@ -69,8 +76,11 @@ export function ContributionHeatmap({ className }: Props) {
           {/* Month labels row */}
           <div className="relative ml-7 h-4">
             {monthLabels.map((m) => (
-              <span key={m.col + m.label} className="absolute text-[10px] uppercase tracking-wider text-muted-foreground"
-                    style={{ left: `${m.col * 14}px` }}>
+              <span
+                key={m.col + m.label}
+                className="absolute text-[10px] uppercase tracking-wider text-muted-foreground"
+                style={{ left: `${m.col * 14}px` }}
+              >
                 {m.label}
               </span>
             ))}
@@ -79,7 +89,9 @@ export function ContributionHeatmap({ className }: Props) {
             {/* Day-of-week labels */}
             <div className="mr-1 flex flex-col gap-[3px] pt-px text-[10px] text-muted-foreground">
               {["", "Mon", "", "Wed", "", "Fri", ""].map((d, i) => (
-                <span key={i} className="h-[11px] leading-[11px]">{d}</span>
+                <span key={i} className="h-[11px] leading-[11px]">
+                  {d}
+                </span>
               ))}
             </div>
             {weeks.map((week, wi) => (
@@ -112,7 +124,12 @@ export function ContributionHeatmap({ className }: Props) {
             {hover.amount > 0 ? ` · $${hover.amount}` : ""}
           </div>
           <div className="text-muted-foreground">
-            {new Date(hover.date + "T00:00:00").toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric", year: "numeric" })}
+            {new Date(hover.date + "T00:00:00").toLocaleDateString(undefined, {
+              weekday: "short",
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}
           </div>
         </div>
       )}

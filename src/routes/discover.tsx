@@ -8,9 +8,16 @@ export const Route = createFileRoute("/discover")({
   head: () => ({
     meta: [
       { title: "Discover — Ed-Bridge Makerere" },
-      { name: "description", content: "People and opportunities connected to your Ed-Bridge circle at Makerere University." },
+      {
+        name: "description",
+        content:
+          "People and opportunities connected to your Ed-Bridge circle at Makerere University.",
+      },
       { property: "og:title", content: "Discover — Ed-Bridge Makerere" },
-      { property: "og:description", content: "See who in your college, course and school network you can help." },
+      {
+        property: "og:description",
+        content: "See who in your college, course and school network you can help.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -34,7 +41,14 @@ function Discover() {
           {recommendations.map((rec) => {
             const person = peopleById[rec.personId];
             if (!person) return null;
-            return <PersonCard key={rec.personId} person={person} relevance={rec.relevance} reasons={rec.reasons} />;
+            return (
+              <PersonCard
+                key={rec.personId}
+                person={person}
+                relevance={rec.relevance}
+                reasons={rec.reasons}
+              />
+            );
           })}
         </div>
       </div>

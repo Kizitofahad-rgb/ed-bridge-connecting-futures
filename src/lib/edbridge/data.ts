@@ -534,7 +534,8 @@ export const opportunities: Opportunity[] = [
     kind: "Scholarship",
     location: "Makerere University",
     closesInDays: 20,
-    summary: "Partial tuition scholarship for continuing computing students with strong coursework.",
+    summary:
+      "Partial tuition scholarship for continuing computing students with strong coursework.",
     matchReason: "Matched because you belong to CoCIS.",
     communities: ["cocis"],
   },
@@ -582,7 +583,8 @@ export const organizations: Organization[] = [
     campaigns: 6,
     mentorshipSessions: 132,
     opportunitiesCreated: 47,
-    blurb: "Coordinates alumni giving, mentorship cohorts and opportunity pipelines back into campus.",
+    blurb:
+      "Coordinates alumni giving, mentorship cohorts and opportunity pipelines back into campus.",
   },
   {
     id: "org-laptop-fund",
@@ -607,35 +609,149 @@ export const organizations: Organization[] = [
 ];
 
 export const recommendations: Recommendation[] = [
-  { personId: "p-amina", relevance: 92, reasons: ["Same college — CoCIS", "Same course — Computer Science", "Same community"] },
-  { personId: "p-david", relevance: 81, reasons: ["Same secondary school — Busia SS", "Makerere alumni connection"] },
+  {
+    personId: "p-amina",
+    relevance: 92,
+    reasons: ["Same college — CoCIS", "Same course — Computer Science", "Same community"],
+  },
+  {
+    personId: "p-david",
+    relevance: 81,
+    reasons: ["Same secondary school — Busia SS", "Makerere alumni connection"],
+  },
   { personId: "p-sarah", relevance: 76, reasons: ["Mentorship interest", "Same academic field"] },
-  { personId: "p-hassan", relevance: 74, reasons: ["Same course — Computer Science", "Same secondary school"] },
-  { personId: "p-lydia", relevance: 68, reasons: ["Offers portfolio mentorship", "Same college — CoCIS"] },
-  { personId: "p-joel", relevance: 64, reasons: ["Same secondary school", "First-year in your college"] },
+  {
+    personId: "p-hassan",
+    relevance: 74,
+    reasons: ["Same course — Computer Science", "Same secondary school"],
+  },
+  {
+    personId: "p-lydia",
+    relevance: 68,
+    reasons: ["Offers portfolio mentorship", "Same college — CoCIS"],
+  },
+  {
+    personId: "p-joel",
+    relevance: 64,
+    reasons: ["Same secondary school", "First-year in your college"],
+  },
 ];
 
 export const seedImpact: ImpactEvent[] = [
-  { id: "i-1", date: "2026-08-21", type: "financial", label: "Supported a tuition request", detail: "Contributed to Amina N.'s tuition balance", privacy: "recognized" },
-  { id: "i-2", date: "2026-08-17", type: "mentorship", label: "Mentored a Computer Science student", detail: "First session with Joel T.", privacy: "recognized" },
-  { id: "i-3", date: "2026-08-12", type: "opportunity", label: "Referred an internship opportunity", detail: "Shared a backend internship with the CS community", privacy: "public" },
-  { id: "i-4", date: "2026-08-04", type: "resource", label: "Lent a resource", detail: "Loaned a laptop charger set to CEDAT workshop share", privacy: "private" },
-  { id: "i-5", date: "2026-07-29", type: "amplification", label: "Amplified a request", detail: "Shared Esther K.'s accommodation request with Busia SS Alumni", privacy: "public" },
+  {
+    id: "i-1",
+    date: "2026-08-21",
+    type: "financial",
+    label: "Supported a tuition request",
+    detail: "Contributed to Amina N.'s tuition balance",
+    privacy: "recognized",
+  },
+  {
+    id: "i-2",
+    date: "2026-08-17",
+    type: "mentorship",
+    label: "Mentored a Computer Science student",
+    detail: "First session with Joel T.",
+    privacy: "recognized",
+  },
+  {
+    id: "i-3",
+    date: "2026-08-12",
+    type: "opportunity",
+    label: "Referred an internship opportunity",
+    detail: "Shared a backend internship with the CS community",
+    privacy: "public",
+  },
+  {
+    id: "i-4",
+    date: "2026-08-04",
+    type: "resource",
+    label: "Lent a resource",
+    detail: "Loaned a laptop charger set to CEDAT workshop share",
+    privacy: "private",
+  },
+  {
+    id: "i-5",
+    date: "2026-07-29",
+    type: "amplification",
+    label: "Amplified a request",
+    detail: "Shared Esther K.'s accommodation request with Busia SS Alumni",
+    privacy: "public",
+  },
 ];
 
 export const seedNotifications: AppNotification[] = [
-  { id: "n-1", title: "New mentorship match", body: "Sarah M. is accepting one more mentee in backend engineering.", at: "2h ago", read: false, tone: "match" },
-  { id: "n-2", title: "Someone from your community needs support", body: "Amina N. (CoCIS, Computer Science) has a verified tuition request.", at: "5h ago", read: false, tone: "support" },
-  { id: "n-3", title: "New opportunity matched to your profile", body: "Backend Engineering Internship closes in 12 days.", at: "Yesterday", read: false, tone: "opportunity" },
-  { id: "n-4", title: "Your student status was verified", body: "Your Makerere student status check passed human review.", at: "2 days ago", read: true, tone: "verification" },
-  { id: "n-5", title: "Your Impact Passport was updated", body: "A mentorship connection was added to your passport.", at: "3 days ago", read: true, tone: "impact" },
+  {
+    id: "n-1",
+    title: "New mentorship match",
+    body: "Sarah M. is accepting one more mentee in backend engineering.",
+    at: "2h ago",
+    read: false,
+    tone: "match",
+  },
+  {
+    id: "n-2",
+    title: "Someone from your community needs support",
+    body: "Amina N. (CoCIS, Computer Science) has a verified tuition request.",
+    at: "5h ago",
+    read: false,
+    tone: "support",
+  },
+  {
+    id: "n-3",
+    title: "New opportunity matched to your profile",
+    body: "Backend Engineering Internship closes in 12 days.",
+    at: "Yesterday",
+    read: false,
+    tone: "opportunity",
+  },
+  {
+    id: "n-4",
+    title: "Your student status was verified",
+    body: "Your Makerere student status check passed human review.",
+    at: "2 days ago",
+    read: true,
+    tone: "verification",
+  },
+  {
+    id: "n-5",
+    title: "Your Impact Passport was updated",
+    body: "A mentorship connection was added to your passport.",
+    at: "3 days ago",
+    read: true,
+    tone: "impact",
+  },
 ];
 
 export const communityActivity = [
-  { id: "ca-1", community: "cocis", label: "Laptop support delivered", detail: "CoCIS Laptop Support campaign reached 14 of 20 students", when: "2 days ago" },
-  { id: "ca-2", community: "cs", label: "Mentorship session", detail: "8 sessions logged this month by Computer Science mentors", when: "4 days ago" },
-  { id: "ca-3", community: "busia-alumni", label: "Tuition circle", detail: "Busia SS Alumni cleared 2 tuition balances this semester", when: "1 week ago" },
-  { id: "ca-4", community: "cedat", label: "Internship referral", detail: "CEDAT alumni referred 5 students for industrial training", when: "1 week ago" },
+  {
+    id: "ca-1",
+    community: "cocis",
+    label: "Laptop support delivered",
+    detail: "CoCIS Laptop Support campaign reached 14 of 20 students",
+    when: "2 days ago",
+  },
+  {
+    id: "ca-2",
+    community: "cs",
+    label: "Mentorship session",
+    detail: "8 sessions logged this month by Computer Science mentors",
+    when: "4 days ago",
+  },
+  {
+    id: "ca-3",
+    community: "busia-alumni",
+    label: "Tuition circle",
+    detail: "Busia SS Alumni cleared 2 tuition balances this semester",
+    when: "1 week ago",
+  },
+  {
+    id: "ca-4",
+    community: "cedat",
+    label: "Internship referral",
+    detail: "CEDAT alumni referred 5 students for industrial training",
+    when: "1 week ago",
+  },
 ];
 
 export const campaign = {

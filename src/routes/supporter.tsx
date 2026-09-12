@@ -10,7 +10,11 @@ export const Route = createFileRoute("/supporter")({
   head: () => ({
     meta: [
       { title: "Supporter Dashboard — Ed-Bridge Makerere" },
-      { name: "description", content: "Find verified Makerere students you can help with money, mentorship, resources or opportunities." },
+      {
+        name: "description",
+        content:
+          "Find verified Makerere students you can help with money, mentorship, resources or opportunities.",
+      },
       { property: "og:title", content: "Supporter Dashboard — Ed-Bridge Makerere" },
       { property: "og:description", content: "Make an impact where it matters." },
       { property: "og:type", content: "website" },
@@ -20,7 +24,15 @@ export const Route = createFileRoute("/supporter")({
   component: Supporter,
 });
 
-const filters = ["All", "My college", "My course", "My secondary school", "Urgent needs", "Mentorship", "Resources"] as const;
+const filters = [
+  "All",
+  "My college",
+  "My course",
+  "My secondary school",
+  "Urgent needs",
+  "Mentorship",
+  "Resources",
+] as const;
 
 function Supporter() {
   const { requests, totals } = useEdBridge();
@@ -64,7 +76,12 @@ function Supporter() {
 
         <div className="mb-6 flex flex-wrap gap-2">
           {filters.map((f) => (
-            <Button key={f} size="sm" variant={filter === f ? "default" : "outline"} onClick={() => setFilter(f)}>
+            <Button
+              key={f}
+              size="sm"
+              variant={filter === f ? "default" : "outline"}
+              onClick={() => setFilter(f)}
+            >
               {f}
             </Button>
           ))}

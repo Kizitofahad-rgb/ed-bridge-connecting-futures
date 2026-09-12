@@ -68,7 +68,9 @@ export function SiteHeader() {
               key={n.to}
               to={n.to}
               className="rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-              activeProps={{ className: "rounded-lg px-3 py-2 text-sm font-medium text-foreground bg-secondary" }}
+              activeProps={{
+                className: "rounded-lg px-3 py-2 text-sm font-medium text-foreground bg-secondary",
+              }}
             >
               {n.label}
             </Link>
@@ -94,7 +96,9 @@ export function SiteHeader() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant={role === "visitor" ? "default" : "outline"} size="sm">
-                {role === "visitor" ? "Try Demo" : roles.find((r) => r.id === role)?.label ?? "Demo"}
+                {role === "visitor"
+                  ? "Try Demo"
+                  : (roles.find((r) => r.id === role)?.label ?? "Demo")}
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
@@ -112,8 +116,12 @@ export function SiteHeader() {
                 </DropdownMenuItem>
               ))}
               <DropdownMenuSeparator />
-              <DropdownMenuItem onClick={() => navigate({ to: "/onboarding" })}>Run onboarding</DropdownMenuItem>
-              <DropdownMenuItem onClick={() => navigate({ to: "/admin" })}>Admin verification</DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate({ to: "/onboarding" })}>
+                Run onboarding
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={() => navigate({ to: "/admin" })}>
+                Admin verification
+              </DropdownMenuItem>
               {role !== "visitor" && (
                 <DropdownMenuItem
                   onClick={() => {
@@ -139,7 +147,11 @@ export function SiteHeader() {
 
       {open && (
         <nav className="border-t border-border/60 bg-background px-4 py-3 lg:hidden">
-          {[...nav, { to: "/supporter", label: "Supporter view" }, { to: "/organization", label: "Organization" }].map((n) => (
+          {[
+            ...nav,
+            { to: "/supporter", label: "Supporter view" },
+            { to: "/organization", label: "Organization" },
+          ].map((n) => (
             <Link
               key={n.to}
               to={n.to}
@@ -159,17 +171,30 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-border/60 bg-secondary/40">
       <div className="mx-auto flex max-w-7xl flex-col gap-2 px-6 py-8 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-        <p>© {new Date().getFullYear()} Ed-Bridge — Makerere University student support & opportunity network.</p>
+        <p>
+          © {new Date().getFullYear()} Ed-Bridge — Makerere University student support & opportunity
+          network.
+        </p>
         <p className="opacity-80">Prototype with fictional data. We rise by lifting others.</p>
       </div>
     </footer>
   );
 }
 
-export function PageHeader({ title, subtitle, eyebrow }: { title: string; subtitle?: string; eyebrow?: string }) {
+export function PageHeader({
+  title,
+  subtitle,
+  eyebrow,
+}: {
+  title: string;
+  subtitle?: string;
+  eyebrow?: string;
+}) {
   return (
     <div className="mb-8">
-      {eyebrow && <p className="text-xs font-semibold uppercase tracking-wider text-connection">{eyebrow}</p>}
+      {eyebrow && (
+        <p className="text-xs font-semibold uppercase tracking-wider text-connection">{eyebrow}</p>
+      )}
       <h1 className="mt-1 text-3xl font-semibold tracking-tight sm:text-4xl">{title}</h1>
       {subtitle && <p className="mt-2 max-w-2xl text-muted-foreground">{subtitle}</p>}
     </div>
