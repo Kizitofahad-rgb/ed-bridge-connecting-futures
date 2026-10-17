@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SupporterRouteImport } from './routes/supporter'
+import { Route as SupportProgrammesRouteImport } from './routes/support-programmes'
 import { Route as StudentRouteImport } from './routes/student'
 import { Route as OrganizationRouteImport } from './routes/organization'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
@@ -22,12 +23,18 @@ import { Route as DiscoverRouteImport } from './routes/discover'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SupportProgrammesIndexRouteImport } from './routes/support-programmes.index'
 import { Route as SupportIdRouteImport } from './routes/support.$id'
 import { Route as CommunityIdRouteImport } from './routes/community.$id'
 
 const SupporterRoute = SupporterRouteImport.update({
   id: '/supporter',
   path: '/supporter',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SupportProgrammesRoute = SupportProgrammesRouteImport.update({
+  id: '/support-programmes',
+  path: '/support-programmes',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StudentRoute = StudentRouteImport.update({
@@ -90,6 +97,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SupportProgrammesIndexRoute = SupportProgrammesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => SupportProgrammesRoute,
+} as any)
 const SupportIdRoute = SupportIdRouteImport.update({
   id: '/support/$id',
   path: '/support/$id',
@@ -114,9 +126,11 @@ export interface FileRoutesByFullPath {
   '/opportunities': typeof OpportunitiesRoute
   '/organization': typeof OrganizationRoute
   '/student': typeof StudentRoute
+  '/support-programmes': typeof SupportProgrammesRouteWithChildren
   '/supporter': typeof SupporterRoute
   '/community/$id': typeof CommunityIdRoute
   '/support/$id': typeof SupportIdRoute
+  '/support-programmes/': typeof SupportProgrammesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -134,6 +148,7 @@ export interface FileRoutesByTo {
   '/supporter': typeof SupporterRoute
   '/community/$id': typeof CommunityIdRoute
   '/support/$id': typeof SupportIdRoute
+  '/support-programmes': typeof SupportProgrammesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -149,9 +164,11 @@ export interface FileRoutesById {
   '/opportunities': typeof OpportunitiesRoute
   '/organization': typeof OrganizationRoute
   '/student': typeof StudentRoute
+  '/support-programmes': typeof SupportProgrammesRouteWithChildren
   '/supporter': typeof SupporterRoute
   '/community/$id': typeof CommunityIdRoute
   '/support/$id': typeof SupportIdRoute
+  '/support-programmes/': typeof SupportProgrammesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -168,9 +185,11 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/organization'
     | '/student'
+    | '/support-programmes'
     | '/supporter'
     | '/community/$id'
     | '/support/$id'
+    | '/support-programmes/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -188,6 +207,7 @@ export interface FileRouteTypes {
     | '/supporter'
     | '/community/$id'
     | '/support/$id'
+    | '/support-programmes'
   id:
     | '__root__'
     | '/'
@@ -202,9 +222,11 @@ export interface FileRouteTypes {
     | '/opportunities'
     | '/organization'
     | '/student'
+    | '/support-programmes'
     | '/supporter'
     | '/community/$id'
     | '/support/$id'
+    | '/support-programmes/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -220,6 +242,7 @@ export interface RootRouteChildren {
   OpportunitiesRoute: typeof OpportunitiesRoute
   OrganizationRoute: typeof OrganizationRoute
   StudentRoute: typeof StudentRoute
+  SupportProgrammesRoute: typeof SupportProgrammesRouteWithChildren
   SupporterRoute: typeof SupporterRoute
   CommunityIdRoute: typeof CommunityIdRoute
   SupportIdRoute: typeof SupportIdRoute
@@ -232,6 +255,13 @@ declare module '@tanstack/react-router' {
       path: '/supporter'
       fullPath: '/supporter'
       preLoaderRoute: typeof SupporterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/support-programmes': {
+      id: '/support-programmes'
+      path: '/support-programmes'
+      fullPath: '/support-programmes'
+      preLoaderRoute: typeof SupportProgrammesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/student': {
@@ -318,6 +348,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/support-programmes/': {
+      id: '/support-programmes/'
+      path: '/'
+      fullPath: '/support-programmes/'
+      preLoaderRoute: typeof SupportProgrammesIndexRouteImport
+      parentRoute: typeof SupportProgrammesRoute
+    }
     '/support/$id': {
       id: '/support/$id'
       path: '/support/$id'
@@ -335,6 +372,17 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface SupportProgrammesRouteChildren {
+  SupportProgrammesIndexRoute: typeof SupportProgrammesIndexRoute
+}
+
+const SupportProgrammesRouteChildren: SupportProgrammesRouteChildren = {
+  SupportProgrammesIndexRoute: SupportProgrammesIndexRoute,
+}
+
+const SupportProgrammesRouteWithChildren =
+  SupportProgrammesRoute._addFileChildren(SupportProgrammesRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -348,6 +396,7 @@ const rootRouteChildren: RootRouteChildren = {
   OpportunitiesRoute: OpportunitiesRoute,
   OrganizationRoute: OrganizationRoute,
   StudentRoute: StudentRoute,
+  SupportProgrammesRoute: SupportProgrammesRouteWithChildren,
   SupporterRoute: SupporterRoute,
   CommunityIdRoute: CommunityIdRoute,
   SupportIdRoute: SupportIdRoute,
