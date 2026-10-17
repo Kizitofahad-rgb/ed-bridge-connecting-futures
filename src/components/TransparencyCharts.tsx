@@ -194,8 +194,8 @@ export function MilestoneProgressChart() {
             />
             <Tooltip
               contentStyle={tooltipStyle}
-              formatter={(_v, _n, p: { payload: { completed: number; total: number } }) => [
-                `${p.payload.completed}/${p.payload.total} students`,
+              formatter={(_v, _n, p) => [
+                `${p.payload?.completed ?? 0}/${p.payload?.total ?? 0} students`,
                 "Completed",
               ]}
             />

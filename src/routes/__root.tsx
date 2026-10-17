@@ -10,6 +10,7 @@ import {
 } from "@tanstack/react-router";
 import { Toaster } from "@/components/ui/sonner";
 import { EdBridgeProvider } from "@/lib/edbridge/store";
+import { TuitionProvider } from "@/lib/tuition/store";
 
 import appCss from "../styles.css?url";
 
@@ -84,7 +85,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
-    links: [{ rel: "stylesheet", href: appCss }],
+    links: [{ rel: "stylesheet", href: appCss }, { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" }, { rel: "icon", type: "image/svg+xml", href: "/favicon.svg" }],
   }),
   shellComponent: RootShell,
   component: RootComponent,
@@ -112,8 +113,10 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <EdBridgeProvider>
+        <TuitionProvider>
         <Outlet />
         <Toaster richColors position="top-right" />
+        </TuitionProvider>
       </EdBridgeProvider>
     </QueryClientProvider>
   );

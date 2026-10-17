@@ -16,7 +16,7 @@ import {
   seedNotifications,
   supportRequests as seedRequests,
 } from "./data";
-import type { AppNotification, ImpactEvent, Privacy, SupportRequest, SupportType } from "./types";
+import type { AppNotification, ImpactEvent, Privacy, SupportRequest, SupportType, VerificationState } from "./types";
 
 export type DemoRole = "visitor" | "student" | "supporter" | "community" | "organization";
 
