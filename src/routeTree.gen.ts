@@ -16,6 +16,7 @@ import { Route as OrganizationRouteImport } from './routes/organization'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as MyApplicationsRouteImport } from './routes/my-applications'
 import { Route as ImpactRouteImport } from './routes/impact'
 import { Route as ExploreSupportRouteImport } from './routes/explore-support'
 import { Route as ExploreCommunitiesRouteImport } from './routes/explore-communities'
@@ -24,7 +25,10 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SupportProgrammesIndexRouteImport } from './routes/support-programmes.index'
+import { Route as MyApplicationsIndexRouteImport } from './routes/my-applications.index'
 import { Route as SupportIdRouteImport } from './routes/support.$id'
+import { Route as SupportProgrammesIdRouteImport } from './routes/support-programmes.$id'
+import { Route as MyApplicationsIdRouteImport } from './routes/my-applications.$id'
 import { Route as CommunityIdRouteImport } from './routes/community.$id'
 
 const SupporterRoute = SupporterRouteImport.update({
@@ -60,6 +64,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
 const NotificationsRoute = NotificationsRouteImport.update({
   id: '/notifications',
   path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MyApplicationsRoute = MyApplicationsRouteImport.update({
+  id: '/my-applications',
+  path: '/my-applications',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ImpactRoute = ImpactRouteImport.update({
@@ -102,10 +111,25 @@ const SupportProgrammesIndexRoute = SupportProgrammesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => SupportProgrammesRoute,
 } as any)
+const MyApplicationsIndexRoute = MyApplicationsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => MyApplicationsRoute,
+} as any)
 const SupportIdRoute = SupportIdRouteImport.update({
   id: '/support/$id',
   path: '/support/$id',
   getParentRoute: () => rootRouteImport,
+} as any)
+const SupportProgrammesIdRoute = SupportProgrammesIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => SupportProgrammesRoute,
+} as any)
+const MyApplicationsIdRoute = MyApplicationsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => MyApplicationsRoute,
 } as any)
 const CommunityIdRoute = CommunityIdRouteImport.update({
   id: '/community/$id',
@@ -121,6 +145,7 @@ export interface FileRoutesByFullPath {
   '/explore-communities': typeof ExploreCommunitiesRoute
   '/explore-support': typeof ExploreSupportRoute
   '/impact': typeof ImpactRoute
+  '/my-applications': typeof MyApplicationsRouteWithChildren
   '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
   '/opportunities': typeof OpportunitiesRoute
@@ -129,7 +154,10 @@ export interface FileRoutesByFullPath {
   '/support-programmes': typeof SupportProgrammesRouteWithChildren
   '/supporter': typeof SupporterRoute
   '/community/$id': typeof CommunityIdRoute
+  '/my-applications/$id': typeof MyApplicationsIdRoute
+  '/support-programmes/$id': typeof SupportProgrammesIdRoute
   '/support/$id': typeof SupportIdRoute
+  '/my-applications/': typeof MyApplicationsIndexRoute
   '/support-programmes/': typeof SupportProgrammesIndexRoute
 }
 export interface FileRoutesByTo {
@@ -147,7 +175,10 @@ export interface FileRoutesByTo {
   '/student': typeof StudentRoute
   '/supporter': typeof SupporterRoute
   '/community/$id': typeof CommunityIdRoute
+  '/my-applications/$id': typeof MyApplicationsIdRoute
+  '/support-programmes/$id': typeof SupportProgrammesIdRoute
   '/support/$id': typeof SupportIdRoute
+  '/my-applications': typeof MyApplicationsIndexRoute
   '/support-programmes': typeof SupportProgrammesIndexRoute
 }
 export interface FileRoutesById {
@@ -159,6 +190,7 @@ export interface FileRoutesById {
   '/explore-communities': typeof ExploreCommunitiesRoute
   '/explore-support': typeof ExploreSupportRoute
   '/impact': typeof ImpactRoute
+  '/my-applications': typeof MyApplicationsRouteWithChildren
   '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
   '/opportunities': typeof OpportunitiesRoute
@@ -167,7 +199,10 @@ export interface FileRoutesById {
   '/support-programmes': typeof SupportProgrammesRouteWithChildren
   '/supporter': typeof SupporterRoute
   '/community/$id': typeof CommunityIdRoute
+  '/my-applications/$id': typeof MyApplicationsIdRoute
+  '/support-programmes/$id': typeof SupportProgrammesIdRoute
   '/support/$id': typeof SupportIdRoute
+  '/my-applications/': typeof MyApplicationsIndexRoute
   '/support-programmes/': typeof SupportProgrammesIndexRoute
 }
 export interface FileRouteTypes {
@@ -180,6 +215,7 @@ export interface FileRouteTypes {
     | '/explore-communities'
     | '/explore-support'
     | '/impact'
+    | '/my-applications'
     | '/notifications'
     | '/onboarding'
     | '/opportunities'
@@ -188,7 +224,10 @@ export interface FileRouteTypes {
     | '/support-programmes'
     | '/supporter'
     | '/community/$id'
+    | '/my-applications/$id'
+    | '/support-programmes/$id'
     | '/support/$id'
+    | '/my-applications/'
     | '/support-programmes/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -206,7 +245,10 @@ export interface FileRouteTypes {
     | '/student'
     | '/supporter'
     | '/community/$id'
+    | '/my-applications/$id'
+    | '/support-programmes/$id'
     | '/support/$id'
+    | '/my-applications'
     | '/support-programmes'
   id:
     | '__root__'
@@ -217,6 +259,7 @@ export interface FileRouteTypes {
     | '/explore-communities'
     | '/explore-support'
     | '/impact'
+    | '/my-applications'
     | '/notifications'
     | '/onboarding'
     | '/opportunities'
@@ -225,7 +268,10 @@ export interface FileRouteTypes {
     | '/support-programmes'
     | '/supporter'
     | '/community/$id'
+    | '/my-applications/$id'
+    | '/support-programmes/$id'
     | '/support/$id'
+    | '/my-applications/'
     | '/support-programmes/'
   fileRoutesById: FileRoutesById
 }
@@ -237,6 +283,7 @@ export interface RootRouteChildren {
   ExploreCommunitiesRoute: typeof ExploreCommunitiesRoute
   ExploreSupportRoute: typeof ExploreSupportRoute
   ImpactRoute: typeof ImpactRoute
+  MyApplicationsRoute: typeof MyApplicationsRouteWithChildren
   NotificationsRoute: typeof NotificationsRoute
   OnboardingRoute: typeof OnboardingRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
@@ -299,6 +346,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotificationsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/my-applications': {
+      id: '/my-applications'
+      path: '/my-applications'
+      fullPath: '/my-applications'
+      preLoaderRoute: typeof MyApplicationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/impact': {
       id: '/impact'
       path: '/impact'
@@ -355,12 +409,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupportProgrammesIndexRouteImport
       parentRoute: typeof SupportProgrammesRoute
     }
+    '/my-applications/': {
+      id: '/my-applications/'
+      path: '/'
+      fullPath: '/my-applications/'
+      preLoaderRoute: typeof MyApplicationsIndexRouteImport
+      parentRoute: typeof MyApplicationsRoute
+    }
     '/support/$id': {
       id: '/support/$id'
       path: '/support/$id'
       fullPath: '/support/$id'
       preLoaderRoute: typeof SupportIdRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/support-programmes/$id': {
+      id: '/support-programmes/$id'
+      path: '/$id'
+      fullPath: '/support-programmes/$id'
+      preLoaderRoute: typeof SupportProgrammesIdRouteImport
+      parentRoute: typeof SupportProgrammesRoute
+    }
+    '/my-applications/$id': {
+      id: '/my-applications/$id'
+      path: '/$id'
+      fullPath: '/my-applications/$id'
+      preLoaderRoute: typeof MyApplicationsIdRouteImport
+      parentRoute: typeof MyApplicationsRoute
     }
     '/community/$id': {
       id: '/community/$id'
@@ -372,11 +447,27 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface MyApplicationsRouteChildren {
+  MyApplicationsIdRoute: typeof MyApplicationsIdRoute
+  MyApplicationsIndexRoute: typeof MyApplicationsIndexRoute
+}
+
+const MyApplicationsRouteChildren: MyApplicationsRouteChildren = {
+  MyApplicationsIdRoute: MyApplicationsIdRoute,
+  MyApplicationsIndexRoute: MyApplicationsIndexRoute,
+}
+
+const MyApplicationsRouteWithChildren = MyApplicationsRoute._addFileChildren(
+  MyApplicationsRouteChildren,
+)
+
 interface SupportProgrammesRouteChildren {
+  SupportProgrammesIdRoute: typeof SupportProgrammesIdRoute
   SupportProgrammesIndexRoute: typeof SupportProgrammesIndexRoute
 }
 
 const SupportProgrammesRouteChildren: SupportProgrammesRouteChildren = {
+  SupportProgrammesIdRoute: SupportProgrammesIdRoute,
   SupportProgrammesIndexRoute: SupportProgrammesIndexRoute,
 }
 
@@ -391,6 +482,7 @@ const rootRouteChildren: RootRouteChildren = {
   ExploreCommunitiesRoute: ExploreCommunitiesRoute,
   ExploreSupportRoute: ExploreSupportRoute,
   ImpactRoute: ImpactRoute,
+  MyApplicationsRoute: MyApplicationsRouteWithChildren,
   NotificationsRoute: NotificationsRoute,
   OnboardingRoute: OnboardingRoute,
   OpportunitiesRoute: OpportunitiesRoute,
