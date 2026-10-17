@@ -1,0 +1,10 @@
+import {test,expect} from 'bun:test';
+import {initialState,report,decide,validateStudent} from './model';
+test('approval is not recorded as delivered',()=>{const a=initialState().applications[0];const approved=decide(a,'Approved','Meets published eligibility.',750000);expect(approved.approvedAmount).toBe(750000);expect(approved.deliveredAmount).toBe(0);expect(report([approved]).delivered).toBe(0);});
+test('delivery separately records amount and date',()=>{const a=decide(initialState().applications[0],'Approved','Eligible.',750000);const delivered=decide(a,'Assistance delivered','Recorded by reviewer.',750000,'2026-10-17');expect(report([delivered]).deliveredAmount).toBe(750000);expect(delivered.deliveredDate).toBe('2026-10-17');});
+test('delivery cannot exceed approved amount',()=>{const a=decide(initialState().applications[0],'Approved','Eligible.',500000);expect(()=>decide(a,'Assistance delivered','Delivery.',750000,'2026-10-17')).toThrow();});
+test('demo report comes from concrete seeded records',()=>{expect(report(initialState().applications)).toMatchObject({received:6,awaiting:3,approved:2,delivered:1,deliveredAmount:500000});});
+test('zero delivered records means zero delivered assistance',()=>{expect(report(initialState().applications.filter(a=>a.status!=='Assistance delivered')).deliveredAmount).toBe(0);});
+test('closed programmes cannot receive applications',()=>{const s=initialState();expect(()=>validateStudent(s.applications[0],s.programmes[3])).toThrow();});
+test('submitted information is required',()=>{const s=initialState();expect(()=>validateStudent({...s.applications[0],name:''},s.programmes[0])).toThrow();});
+test('a declined application cannot be delivered',()=>{expect(()=>decide(initialState().applications[5],'Assistance delivered','Delivery.',500000,'2026-10-17')).toThrow();});
