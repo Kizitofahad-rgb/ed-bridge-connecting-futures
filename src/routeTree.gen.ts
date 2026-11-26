@@ -13,6 +13,7 @@ import { Route as SupporterRouteImport } from './routes/supporter'
 import { Route as SupportProgrammesRouteImport } from './routes/support-programmes'
 import { Route as StudentRouteImport } from './routes/student'
 import { Route as OrganizationRouteImport } from './routes/organization'
+import { Route as OrganisationRouteImport } from './routes/organisation'
 import { Route as OpportunitiesRouteImport } from './routes/opportunities'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as NotificationsRouteImport } from './routes/notifications'
@@ -25,11 +26,15 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SupportProgrammesIndexRouteImport } from './routes/support-programmes.index'
+import { Route as OrganisationIndexRouteImport } from './routes/organisation.index'
 import { Route as MyApplicationsIndexRouteImport } from './routes/my-applications.index'
 import { Route as SupportIdRouteImport } from './routes/support.$id'
 import { Route as SupportProgrammesIdRouteImport } from './routes/support-programmes.$id'
+import { Route as OrganisationProgrammesRouteImport } from './routes/organisation.programmes'
+import { Route as OrganisationImpactRouteImport } from './routes/organisation.impact'
 import { Route as MyApplicationsIdRouteImport } from './routes/my-applications.$id'
 import { Route as CommunityIdRouteImport } from './routes/community.$id'
+import { Route as OrganisationApplicationsIdRouteImport } from './routes/organisation.applications.$id'
 
 const SupporterRoute = SupporterRouteImport.update({
   id: '/supporter',
@@ -49,6 +54,11 @@ const StudentRoute = StudentRouteImport.update({
 const OrganizationRoute = OrganizationRouteImport.update({
   id: '/organization',
   path: '/organization',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OrganisationRoute = OrganisationRouteImport.update({
+  id: '/organisation',
+  path: '/organisation',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OpportunitiesRoute = OpportunitiesRouteImport.update({
@@ -111,6 +121,11 @@ const SupportProgrammesIndexRoute = SupportProgrammesIndexRouteImport.update({
   path: '/',
   getParentRoute: () => SupportProgrammesRoute,
 } as any)
+const OrganisationIndexRoute = OrganisationIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => OrganisationRoute,
+} as any)
 const MyApplicationsIndexRoute = MyApplicationsIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -126,6 +141,16 @@ const SupportProgrammesIdRoute = SupportProgrammesIdRouteImport.update({
   path: '/$id',
   getParentRoute: () => SupportProgrammesRoute,
 } as any)
+const OrganisationProgrammesRoute = OrganisationProgrammesRouteImport.update({
+  id: '/programmes',
+  path: '/programmes',
+  getParentRoute: () => OrganisationRoute,
+} as any)
+const OrganisationImpactRoute = OrganisationImpactRouteImport.update({
+  id: '/impact',
+  path: '/impact',
+  getParentRoute: () => OrganisationRoute,
+} as any)
 const MyApplicationsIdRoute = MyApplicationsIdRouteImport.update({
   id: '/$id',
   path: '/$id',
@@ -136,6 +161,12 @@ const CommunityIdRoute = CommunityIdRouteImport.update({
   path: '/community/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const OrganisationApplicationsIdRoute =
+  OrganisationApplicationsIdRouteImport.update({
+    id: '/applications/$id',
+    path: '/applications/$id',
+    getParentRoute: () => OrganisationRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -149,16 +180,21 @@ export interface FileRoutesByFullPath {
   '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/organisation': typeof OrganisationRouteWithChildren
   '/organization': typeof OrganizationRoute
   '/student': typeof StudentRoute
   '/support-programmes': typeof SupportProgrammesRouteWithChildren
   '/supporter': typeof SupporterRoute
   '/community/$id': typeof CommunityIdRoute
   '/my-applications/$id': typeof MyApplicationsIdRoute
+  '/organisation/impact': typeof OrganisationImpactRoute
+  '/organisation/programmes': typeof OrganisationProgrammesRoute
   '/support-programmes/$id': typeof SupportProgrammesIdRoute
   '/support/$id': typeof SupportIdRoute
   '/my-applications/': typeof MyApplicationsIndexRoute
+  '/organisation/': typeof OrganisationIndexRoute
   '/support-programmes/': typeof SupportProgrammesIndexRoute
+  '/organisation/applications/$id': typeof OrganisationApplicationsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -176,10 +212,14 @@ export interface FileRoutesByTo {
   '/supporter': typeof SupporterRoute
   '/community/$id': typeof CommunityIdRoute
   '/my-applications/$id': typeof MyApplicationsIdRoute
+  '/organisation/impact': typeof OrganisationImpactRoute
+  '/organisation/programmes': typeof OrganisationProgrammesRoute
   '/support-programmes/$id': typeof SupportProgrammesIdRoute
   '/support/$id': typeof SupportIdRoute
   '/my-applications': typeof MyApplicationsIndexRoute
+  '/organisation': typeof OrganisationIndexRoute
   '/support-programmes': typeof SupportProgrammesIndexRoute
+  '/organisation/applications/$id': typeof OrganisationApplicationsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -194,16 +234,21 @@ export interface FileRoutesById {
   '/notifications': typeof NotificationsRoute
   '/onboarding': typeof OnboardingRoute
   '/opportunities': typeof OpportunitiesRoute
+  '/organisation': typeof OrganisationRouteWithChildren
   '/organization': typeof OrganizationRoute
   '/student': typeof StudentRoute
   '/support-programmes': typeof SupportProgrammesRouteWithChildren
   '/supporter': typeof SupporterRoute
   '/community/$id': typeof CommunityIdRoute
   '/my-applications/$id': typeof MyApplicationsIdRoute
+  '/organisation/impact': typeof OrganisationImpactRoute
+  '/organisation/programmes': typeof OrganisationProgrammesRoute
   '/support-programmes/$id': typeof SupportProgrammesIdRoute
   '/support/$id': typeof SupportIdRoute
   '/my-applications/': typeof MyApplicationsIndexRoute
+  '/organisation/': typeof OrganisationIndexRoute
   '/support-programmes/': typeof SupportProgrammesIndexRoute
+  '/organisation/applications/$id': typeof OrganisationApplicationsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -219,16 +264,21 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/onboarding'
     | '/opportunities'
+    | '/organisation'
     | '/organization'
     | '/student'
     | '/support-programmes'
     | '/supporter'
     | '/community/$id'
     | '/my-applications/$id'
+    | '/organisation/impact'
+    | '/organisation/programmes'
     | '/support-programmes/$id'
     | '/support/$id'
     | '/my-applications/'
+    | '/organisation/'
     | '/support-programmes/'
+    | '/organisation/applications/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -246,10 +296,14 @@ export interface FileRouteTypes {
     | '/supporter'
     | '/community/$id'
     | '/my-applications/$id'
+    | '/organisation/impact'
+    | '/organisation/programmes'
     | '/support-programmes/$id'
     | '/support/$id'
     | '/my-applications'
+    | '/organisation'
     | '/support-programmes'
+    | '/organisation/applications/$id'
   id:
     | '__root__'
     | '/'
@@ -263,16 +317,21 @@ export interface FileRouteTypes {
     | '/notifications'
     | '/onboarding'
     | '/opportunities'
+    | '/organisation'
     | '/organization'
     | '/student'
     | '/support-programmes'
     | '/supporter'
     | '/community/$id'
     | '/my-applications/$id'
+    | '/organisation/impact'
+    | '/organisation/programmes'
     | '/support-programmes/$id'
     | '/support/$id'
     | '/my-applications/'
+    | '/organisation/'
     | '/support-programmes/'
+    | '/organisation/applications/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -287,6 +346,7 @@ export interface RootRouteChildren {
   NotificationsRoute: typeof NotificationsRoute
   OnboardingRoute: typeof OnboardingRoute
   OpportunitiesRoute: typeof OpportunitiesRoute
+  OrganisationRoute: typeof OrganisationRouteWithChildren
   OrganizationRoute: typeof OrganizationRoute
   StudentRoute: typeof StudentRoute
   SupportProgrammesRoute: typeof SupportProgrammesRouteWithChildren
@@ -323,6 +383,13 @@ declare module '@tanstack/react-router' {
       path: '/organization'
       fullPath: '/organization'
       preLoaderRoute: typeof OrganizationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/organisation': {
+      id: '/organisation'
+      path: '/organisation'
+      fullPath: '/organisation'
+      preLoaderRoute: typeof OrganisationRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/opportunities': {
@@ -409,6 +476,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupportProgrammesIndexRouteImport
       parentRoute: typeof SupportProgrammesRoute
     }
+    '/organisation/': {
+      id: '/organisation/'
+      path: '/'
+      fullPath: '/organisation/'
+      preLoaderRoute: typeof OrganisationIndexRouteImport
+      parentRoute: typeof OrganisationRoute
+    }
     '/my-applications/': {
       id: '/my-applications/'
       path: '/'
@@ -430,6 +504,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SupportProgrammesIdRouteImport
       parentRoute: typeof SupportProgrammesRoute
     }
+    '/organisation/programmes': {
+      id: '/organisation/programmes'
+      path: '/programmes'
+      fullPath: '/organisation/programmes'
+      preLoaderRoute: typeof OrganisationProgrammesRouteImport
+      parentRoute: typeof OrganisationRoute
+    }
+    '/organisation/impact': {
+      id: '/organisation/impact'
+      path: '/impact'
+      fullPath: '/organisation/impact'
+      preLoaderRoute: typeof OrganisationImpactRouteImport
+      parentRoute: typeof OrganisationRoute
+    }
     '/my-applications/$id': {
       id: '/my-applications/$id'
       path: '/$id'
@@ -443,6 +531,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/community/$id'
       preLoaderRoute: typeof CommunityIdRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/organisation/applications/$id': {
+      id: '/organisation/applications/$id'
+      path: '/applications/$id'
+      fullPath: '/organisation/applications/$id'
+      preLoaderRoute: typeof OrganisationApplicationsIdRouteImport
+      parentRoute: typeof OrganisationRoute
     }
   }
 }
@@ -459,6 +554,24 @@ const MyApplicationsRouteChildren: MyApplicationsRouteChildren = {
 
 const MyApplicationsRouteWithChildren = MyApplicationsRoute._addFileChildren(
   MyApplicationsRouteChildren,
+)
+
+interface OrganisationRouteChildren {
+  OrganisationImpactRoute: typeof OrganisationImpactRoute
+  OrganisationProgrammesRoute: typeof OrganisationProgrammesRoute
+  OrganisationIndexRoute: typeof OrganisationIndexRoute
+  OrganisationApplicationsIdRoute: typeof OrganisationApplicationsIdRoute
+}
+
+const OrganisationRouteChildren: OrganisationRouteChildren = {
+  OrganisationImpactRoute: OrganisationImpactRoute,
+  OrganisationProgrammesRoute: OrganisationProgrammesRoute,
+  OrganisationIndexRoute: OrganisationIndexRoute,
+  OrganisationApplicationsIdRoute: OrganisationApplicationsIdRoute,
+}
+
+const OrganisationRouteWithChildren = OrganisationRoute._addFileChildren(
+  OrganisationRouteChildren,
 )
 
 interface SupportProgrammesRouteChildren {
@@ -486,6 +599,7 @@ const rootRouteChildren: RootRouteChildren = {
   NotificationsRoute: NotificationsRoute,
   OnboardingRoute: OnboardingRoute,
   OpportunitiesRoute: OpportunitiesRoute,
+  OrganisationRoute: OrganisationRouteWithChildren,
   OrganizationRoute: OrganizationRoute,
   StudentRoute: StudentRoute,
   SupportProgrammesRoute: SupportProgrammesRouteWithChildren,
